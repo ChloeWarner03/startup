@@ -26,9 +26,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Have you ever endlessly debated with your friends about where to meet for lunch, or had your team bog down about an important decision that needs to be made. The Voting application makes it so a group of people can pull out their phones, clearly see the options, and pick their top three choices. As each user makes their choices the results are automatically tallied and displayed in realtime to all the other group members. Once everyone locks in their choices the group can move forward with confidence that the best option has been selected.
-
-When you were younger did you ever go to the arcade and have the best time of your life playing the games there? It was like entering into a new world with limitless fun at the tips of your fingers! This Wack-a-mole application allows you to bring home one of these classic arcade games to play on your computer right in your living room! Each user will be able to play this intense version of this classic childhood game and be able to see the high scores of other users to make this game a little more competitive! Dont miss out an go Wack-a-Mole!
+When you were younger did you ever go to the arcade and have the best time of your life playing the games there? It was like entering into a new world with limitless fun at the tip of your finger! This Wack-a-mole application allows you to bring home one of these classic arcade games to play on your computer right in your living room! Each user will be able to play this intense version of this classic childhood game and be able to see the high scores of other users to make this game a little more competitive! Dont miss out an go Wack-a-Mole!
 
 ### Design
 
