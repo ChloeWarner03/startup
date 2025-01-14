@@ -35,10 +35,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ```mermaid
 sequenceDiagram
     actor Player
-    Player->>Login: Bud + 1
-    Login ->>Play: Bud + 1
-    Play ->>HgihScore: Bud + 1
-
+    Player->>Login: Enter in login information
+    Login ->>Play: Start the Game
+    Play ->>HgihScore: Getting to all highscores
+    Play ->>Play: Wack the moles
+    Play -->>Login: Logout
+    HighScore -->>Login: Logout
 ```
 
 
