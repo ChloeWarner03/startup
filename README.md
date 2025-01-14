@@ -18,10 +18,10 @@ The application that I want to create is a Wack-a-Mole. It was one of the games 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
+- [x] A concise and compelling elevator pitch
 - [ ] Description of key features
 - [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
@@ -29,7 +29,8 @@ When you were younger did you ever go to the arcade and have the best time of yo
 
 ### Design
 
-![Design image](wack-a-mole-second.gif)
+![Design image:Wack-a-Mole](wack-a-mole-second.gif)
+
 Backend design for the Game: 
 ```mermaid
 sequenceDiagram
