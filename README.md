@@ -39,9 +39,9 @@ sequenceDiagram
     actor Website
     You->>Website: Enter login inforamtion
 
-    box "Login" 
-    box "Play"  
-    box "Highscores"  
+flowchart TD
+    A[Login] --> B[Play]
+    B --> C[Highscores]
       
 ```
 
