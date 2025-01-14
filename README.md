@@ -54,16 +54,16 @@ sequenceDiagram
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Uses correct HTML structure for application. Two HTML pages. One for login and one for voting. Hyperlinks to choice artifact.
-- **CSS** - Application styling that looks good on different screen sizes, uses good whitespace, color choice and contrast.
-- **React** - Provides login, choice display, applying votes, display other users votes, and use of React for routing and components.
-- **Service** - Backend service with endpoints for:
-- login
-- retrieving choices
-- submitting votes
-- retrieving vote status
-- **DB/Login** - Store users, choices, and votes in database. Register and login users. Credentials securely stored in database. Can't vote unless authenticated.
-- **WebSocket** -  As each user votes, their votes are broadcast to all other users.
+- **HTML** - Uses correct HTML structure for application. Three HTML pages. One for login, one for the game and one for the highscores
+- **CSS** - animating the game and style of the login and the highscores
+- **React** - Provides login, interactive part of the game and the highscores
+- **Web Service** - using this to save do saveScores so then they can have the hgihscores vs the other players
+- **Authentication** - Allows player to create an account and login.
+- **Database data**: A rendering of application data that is stored in the database. For Wack-a-Mole, this is the high scores of all players.
+- **WebSocket data** -  A rendering of data that is received from your server. For Wack-a-Mole, this is the when the player ends the game
+
+### Example of representing all technologies
+
 
 ## 🚀 AWS deliverable
 
