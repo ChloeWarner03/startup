@@ -41,15 +41,15 @@ sequenceDiagram
 
     box "User Actions"  
         Login
-    end box
+    end 
 
     box "User Actions"  
         Play
-    end box
+    end 
 
     box "User Actions"  
         Highscores
-    end box
+    end 
 ```
 
 ### Key features
