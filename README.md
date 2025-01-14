@@ -39,7 +39,8 @@ sequenceDiagram
     Login ->>Play: Start the Game
     Play ->>HighScore: Getting to all highscores
     Play ->>Play: Wack the moles
-    HighScore ->>HighScore: Live Login/Logout Info
+    Play ->>HighScore: receiving the high scores
+    HighScore ->>HighScore: Live Logout/New HighScore Info
     Play -->>Login: Logout
     HighScore -->>Login: Logout
 ```
