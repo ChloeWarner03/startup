@@ -38,7 +38,9 @@ sequenceDiagram
     actor You
     actor Website
     You->>Website: Enter login inforamtion
-    box Login
+    Login
+    Play
+    HighScores
 
 ```
 
