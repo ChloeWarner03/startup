@@ -38,11 +38,18 @@ sequenceDiagram
     actor You
     actor Website
     You->>Website: Enter login inforamtion
-    graph TD;
-    Login;
-    Play;
-    HighScores;
 
+    box "User Actions"  
+        Login
+    end box
+
+    box "User Actions"  
+        Play
+    end box
+
+    box "User Actions"  
+        Highscores
+    end box
 ```
 
 ### Key features
