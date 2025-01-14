@@ -37,8 +37,9 @@ sequenceDiagram
     actor Player
     Player->>Login: Enter in login information
     Login ->>Play: Start the Game
-    Play ->>HgihScore: Getting to all highscores
+    Play ->>HighScore: Getting to all highscores
     Play ->>Play: Wack the moles
+    Play ->>Play: Live Login/Logout Info
     Play -->>Login: Logout
     HighScore -->>Login: Logout
 ```
