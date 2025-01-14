@@ -38,6 +38,7 @@ sequenceDiagram
     actor You
     actor Website
     You->>Website: Enter login inforamtion
+    graph TD;
     Login
     Play
     HighScores
