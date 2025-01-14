@@ -29,7 +29,7 @@ When you were younger did you ever go to the arcade and have the best time of yo
 
 ### Design
 
-![Design image:Wack-a-Mole](wack-a-mole-second.gif)
+![Design image:Wack-a-Mole](wack-a-mole-third.gif)
 
 Backend design for the Game: 
 ```mermaid
