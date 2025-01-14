@@ -47,9 +47,10 @@ flowchart TD
 
 ### Key features
 - Ability to create a login
+- Play a fun game of Wack-a-Mole
 - Ability to see the Highscores of other players
 - Ability to see your score
-- Ability to see when people end thier games
+- Ability to see when people end their games
 - Access to personal results
 
 ### Technologies
