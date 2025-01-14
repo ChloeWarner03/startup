@@ -39,17 +39,10 @@ sequenceDiagram
     actor Website
     You->>Website: Enter login inforamtion
 
-    box "User Actions"  
-        Login
-    end 
-
-    box "User Actions"  
-        Play
-    end 
-
-    box "User Actions"  
-        Highscores
-    end 
+    box "Login" 
+    box "Play"  
+    box "Highscores"  
+      
 ```
 
 ### Key features
