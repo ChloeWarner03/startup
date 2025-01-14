@@ -51,6 +51,7 @@ sequenceDiagram
 - Ability to see the Highscores of other players
 - Ability to see your score
 - Ability to see when people end their games
+- Ability to see when someone gets a new highscore
 
 ### Technologies
 
@@ -59,7 +60,7 @@ I am going to use the required technologies in the following ways.
 - **HTML** - Uses correct HTML structure for application. Three HTML pages. One for login, one for the game and one for the highscores
 - **CSS** - animating the game and style of the login and the highscores
 - **REACT** - Provides login, interactive part of the game and the highscores
-- **Web Service** - using this to save do saveScores so then they can have the hgihscores vs the other players
+- **Web Service** - Use saveScores to save the highscores of the players
 - **Authentication** - Allows player to create an account and login.
 - **Database data**: A rendering of application data that is stored in the database. For Wack-a-Mole, this is the high scores of all players.
 - **WebSocket data** -  A rendering of data that is received from your server. For Wack-a-Mole, the newest high score will be sent to players
