@@ -73,7 +73,7 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **Server deployed and accessible with custom domain name** - [https://wackamole.click](http://wackamole.click).
+- [x] **Server deployed and accessible with custom domain name** - [http://wackamole.click](http://wackamole.click).
 
 ## 🚀 HTML deliverable
 
