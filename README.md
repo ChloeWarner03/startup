@@ -73,7 +73,7 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **Server deployed and accessible with custom domain name** - [http://chloewarner-webserver-base](http://34.233.73.178).
+- [x] **Server deployed and accessible with custom domain name** - [https://chloewarner-webserver-base](http://34.233.73.178).
 
 ## 🚀 HTML deliverable
 
