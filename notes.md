@@ -25,7 +25,13 @@ Notes from the instructor:
 
 ## AWS Notes
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Set up your AWS account using your byu.edu email address.
+Create a new EC2 instance and access the server using http://6.5.4.3 (where 6.5.4.3 is your IP address).
+Lease a domain in Route53. Make sure you respond to the email that they will send you.
+Make sure that you can access your server through HTTP through http://startup.yourdomain (where yourdomain is replaced with the domain you leased from Route53)
+Edit your Caddyfile so that you can access your server through HTTPS.
+You should see the default web page displayed through HTTPS
+Upload the URL to your startup application to the Canvas assignment. The URL should have the form https://startup.yourdomain
 
 ## HTML Notes
 
