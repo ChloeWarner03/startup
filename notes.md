@@ -32,7 +32,14 @@ Make sure that you can access your server through HTTP through http://startup.yo
 Edit your Caddyfile so that you can access your server through HTTPS.
 You should see the default web page displayed through HTTPS
 Upload the URL to your startup application to the Canvas assignment. The URL should have the form https://startup.yourdomain
+got to the front of the terminal and then hit delete to update within alogn with use esc and the :wq to exit and make sure you do it nad tyr and it may take a few trys to get it to actually work
 
 ## HTML Notes
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+## CSS: Cascading Style Sheets
+Selectors: 
+![example](https://github.com/user-attachments/assets/345e0a1e-cca3-4117-8ded-5a9abf48ade9)
+
+
