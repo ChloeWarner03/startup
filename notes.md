@@ -39,6 +39,7 @@ got to the front of the terminal and then hit delete to update within alogn with
 
 
 ## CSS: Cascading Style Sheets
+![image](https://github.com/user-attachments/assets/d4b85029-ee37-4629-9a60-95d6a5ff79d1)
 Selectors: 
 ![example](https://github.com/user-attachments/assets/345e0a1e-cca3-4117-8ded-5a9abf48ade9)
 
