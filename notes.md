@@ -35,6 +35,20 @@ Upload the URL to your startup application to the Canvas assignment. The URL sho
 got to the front of the terminal and then hit delete to update within alogn with use esc and the :wq to exit and make sure you do it nad tyr and it may take a few trys to get it to actually work
 
 ## HTML Notes
+go to gitbash:
+Simon: 
+to go to simon:
+cd /c/Development/CS260\ Web\ Programming/simon-html
+delopy:
+./deployFiles.sh -k C:/Users/chloe/Downloads/webserver260.pem -h wackamole.click -s simon
+startup: 
+to to startup:
+cd /c/Development/CS260\ Web\ Programming/startup
+delopy:
+./deployFiles.sh -k C:/Users/chloe/Downloads/webserver260.pem -h wackamole.click -s startup
+
+
+
 
 
 
