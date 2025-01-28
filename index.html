@@ -1,30 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" /> <!--cahracter set to change if I want-->
-    <!-- Tell browsers not to scale the viewport automatically -->
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Whack-a-Mole HTML</title>
-    <link rel="icon" href="favicon.ico" /> <!--favorites icon-->
+    <link rel="icon" href="favicon.ico" />
   </head>
   <body>
-    <!-- Use header, main, and footer elements to give semantic structure -->
     <header>
-      <h1>Whack-a-Mole<sup>&reg;</sup></h1> <!--header in the body of the page-->
-
-      <!-- Navigation elements -->
+      <h1>Whack-a-Mole<sup>&reg;</sup></h1>
       <nav>
-        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
         <menu>
-          <li><a href="index.html">Home</a></li> <!--CSS can change the dots-->
+          <li><a href="index.html">Home</a></li>
           <li><a href="play.html">GamePlay</a></li>
-          <li><a href="scores.html">HighScores</a></li>
-          <li><a href="about.html">Information</a></li> <!--figured i would do an about page-->
+          <li><a href="scores.html">Scores</a></li>
+          <li><a href="about.html">About Whack-a-Mole</a></li>
         </menu>
       </nav>
-
-      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
-      <hr /> <!--hard return-->
+      <hr />
     </header>
 
     <main>
@@ -32,18 +25,19 @@
       <form method="get" action="play.html">
         <div>
           <span>Email:</span>
-          <input type="text" placeholder="your@email.com" />
+          <input id="email" type="text" placeholder="your@email.com" />
+          <!-- Placeholder for Email Validation using MailboxLayer -->
+          <small>Enter a valid email. (Validation via MailboxLayer API goes here)</small>
         </div>
         <div>
           <span>Password:</span>
-          <input type="password" placeholder="password" /> <!--put dots-->
+          <input type="password" placeholder="password" />
         </div>
         <button type="submit">Login</button>
-        <button type="submit">Create a Account</button>
-      </form>
+        <button type="submit">Create an Account</button>
     </main>
 
-    <footer> <!--can go across every page-->
+    <footer>
       <hr />
       <span class="text-reset">Whack-a-Mole created by Chloe Warner</span>
       <br />
@@ -51,3 +45,4 @@
     </footer>
   </body>
 </html>
+
