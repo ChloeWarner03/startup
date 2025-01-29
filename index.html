@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Whack-a-Mole HTML</title>
     <link rel="icon" href="favicon.ico" >
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <header>
       <h1><img width="75px" src="molewithcrown.png" alt="KingMole" /> Whack-a-Mole&reg;</sup></h1> 
+      <div>Welcome Username</div>
+      
       <nav>
         <menu>
           <li><a href="index.html">Home</a></li>
@@ -27,13 +30,16 @@
           <span>✉</span>
           <input id="email" type="text" placeholder="palyer@email.com" />
           <!-- Placeholder for Email Validation using MailboxLayer -->
-          <!--https://eva.pingutil.com/ 
-          <script>var settings = {             
-          "url": "https://api.eva.pingutil.com/email?email=test@mail7.io",  
-          "method": "GET",             
-          "timeout": 0,         };        
-          $.ajax(settings).done(function (response) { console.log(response); }); </script>
-          -->
+        <!--<script>
+          var settings = {
+              "url": "https://api.eva.pingutil.com/email?email=test@mail7.io",
+              "method": "GET",
+              "timeout": 0,
+          };
+          $.ajax(settings).done(function (response) {
+              console.log(response);
+          });
+      </script>-->
           <small>Enter a valid email. (Validation via MailboxLayer API goes here)</small>
         </div>
         <div>
