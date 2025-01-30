@@ -80,13 +80,13 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **HTML pages** - I created 4 pages for my whack-a-mole, index, scores, about, play
-- [x] **Proper HTML element usage** - I used them all on each pages and they can be seen
-- [x] **Links** - you are able ot click at the top to each one and move between the pages
-- [x] **Text** - in the about page and on each page letting you know hwat is going on 
-- [x] **3rd party API placeholder** - to make sure that they email is valid
+- [x] **Proper HTML element usage** - I used them all on each pages and they can be seen in the code
+- [x] **Links** - you are able to click at the top to each page and move between the pages
+- [x] **Text** - in the about page and on each page letting you know what is going on 
+- [x] **3rd party API placeholder** - to make sure that they email is valid in the index page paired with the username
 - [x] **Images** - at the top there is a mole wiht a corwn on each pages for the images
-- [x] **Login placeholder** - on the index page
-- [x] **DB data placeholder** - in the hgih scores to save highscores and your scores
+- [x] **Login placeholder** - on the index page along iwth passwork, able to login and create and account
+- [x] **DB data placeholder** - in the high scores to save highscores and your scores
 - [x] **WebSocket placeholder** - on the play page to get updates on when people get highscores
 
 ## 🚀 CSS deliverable
