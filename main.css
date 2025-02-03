@@ -1,10 +1,17 @@
+label {
+  font-size: 1.1em;
+  color: #2C5F2D; /* Dark green*/
+  margin-bottom: 8px;
+  display: block;
+}
+
 body {
   display: flex;
   flex-direction: column;
   min-width: 375px;
   height: 100vh;
-  background-color: #2C5F2D;
-  color: #F1E4C3;
+  background-color: #D1F0C7 !important;
+  color: #C3E6CB;
   font-family: 'Arial', sans-serif;
 }
 
@@ -33,7 +40,7 @@ main {
   flex: 1;
   height: calc(100vh-110px);
   overflow-y: auto; 
-  background-color: #3E7520;
+  background-color: #A8D08D;
   text-align: center;
   padding: 20px;
 }
