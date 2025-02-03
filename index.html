@@ -18,36 +18,39 @@
 </head>
 
 <body class="bg-dark text-light">
-  <header class="container-fluid">
+  <header class="container-fluid bg-brown text-light py-3">
 
     <!--<h1><img width="75px" src="molewithcrown.png" alt="KingMole" /> Whack-a-Mole&reg;</sup></h1> 
       <div>Welcome Username</div> -->
-    <nav class="navbar fixed-top navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark">
       <a class="navabr-brand" href="#">Wack-a-Mole<sup>&reg;</sup></a>
-
-      <menu class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" href="index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="play.html">GamePlay</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="scores.html">Scores</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="about.html">About Whack-a-Mole</a>
-        </li>
-      </menu>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto
+          <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="play.html">GamePlay</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="scores.html">Scores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About Whack-a-Mole</a>
+          </li>
+        </ul>
+      </div>
     </nav>
-    <hr />
   </header>
 
   <main class="container-fluid bg-secondary text-center">
-    <div>
-      <h1>Let's Whack-a-Mole!</h1>
-      <form method="get" action="play.html">
-        <div class="input-group mb-3">
+    <h1>Let's Whack-a-Mole!</h1>
+    <form method="get" action="play.html">
+      <div class="mb-3">
           <span class="input-group-text">✉</span>
           <input id="email" type="text" placeholder="palyer@email.com" />
           <!-- Placeholder for Email Validation using MailboxLayer -->
@@ -62,7 +65,7 @@
           });
       </script>-->
         </div>
-          <small>Enter a valid email. (Validation via MailboxLayer API goes here)</small>
+        <small>Enter a valid email. (Validation via MailboxLayer API goes here)</small>
         <div class="input-group mb-3">
           <span class="input-group-text">ꗃ</span>
           <input class="form-control" type="password" placeholder="password" />
@@ -82,3 +85,5 @@
 </body>
 
 </html>
+
+ <!--changes-->

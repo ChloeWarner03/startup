@@ -25,47 +25,68 @@ header {
   transition: color 0.3s ease-in-out;
 }
 
+.navbar-nav .nav-link:hover {
+  color: #97BC62FF !important; /* Olive Green */
+}
+
 main {
-  flex: 1 calc(100vh - 110px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  flex: 1;
+  height: calc(100vh-110px);
+  overflow-y: auto; 
+  background-color: #3E7520;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  color: #F1E4C3;
+}
+
+.input-group-text {
+  background-color: #A67B5B; /* Warm Brown */
+  color: #F1E4C3;
+}
+
+input {
+  background-color: #F1E4C3;
+  color: #2C5F2D;
+  border: 2px solid #A67B5B;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #97BC62FF; /* Olive Green */
+  color: #2C5F2D;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s
+}
+
+button:hover {
+  background-color: #A67B5B; /* Warm Brown */
+  color: #F1E4C3;
 }
 
 footer {
-  flex: 0 30px;
-}
-
-menu {
-  flex: 1;
+  flex: 0 0 30px;
+  background-color: #8B5E3C; /* Darker Brown */
   display: flex;
-  /*  overwrite Bootstrap so the menu does not wrap */
-  flex-direction: row !important;
-  list-style: none;
-}
-
-.navbar-brand {
-  padding-left: 0.3em;
-  border-bottom: solid rgb(182, 182, 182) thin;
-}
-
-menu .nav-item {
-  padding: 0 0.3em;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-size: 0.9em;
 }
 
 footer a {
-  float: right;
+  text-decoration: none;
+  color: #F1E4C3;
+  transition: color 0.3s ease-in-out;
 }
 
-@media (max-height: 600px) {
-  header {
-    display: none;
-  }
-  footer {
-    display: none;
-  }
-  main {
-    flex: 1 100vh;
-  }
+footer a:hover {
+  color: #97BC62FF; /* Olive Green */
 }
