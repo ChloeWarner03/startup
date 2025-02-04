@@ -17,7 +17,7 @@
 
 <body class="bg-dark text-light">
   <header class="container-fluid">
-    <nav class="navbar navbar-dark">
+    <nav class="navbar fixed-top navbar-dark">
       <img width="55px" src="molewithcrown.png" style="border-radius: 50%;" alt="KingMole" />
 </sup>
       <a class="navbar-brand" href="#">Whack-a-Mole<sup>&reg;</sup></a>
@@ -42,21 +42,18 @@
   <main class="container-fluid text-center">
     <div>
       <h1>Let's Whack-a-Mole!</h1>
+      <small>Enter a valid email. (Validation via MailboxLayer API goes here)</small>
       <form method="get" action="play.html">
         <div class="input-group mb-3">
-
           <span class="input-group-text">✉</span>
           <input class="form-control" type="text" placeholder="email@email.com"/>
         </div>
-
-        <small>Enter a valid email. (Validation via MailboxLayer API goes here)</small>
-
         <div class="input-group mb-3">
           <span class="input-group-text">ꗃ</span>
           <input class="form-control" type="password" placeholder="password" />
         </div>
         <button type="submit" class="btn btn-outline-light">Login</button>
-        <button type="submit" class="btn btn-outline-light">Create an Account</button>
+        <button type="submit" class="btn  btn-outline-light">Create an Account</button>
       </form>
     </div>
   </main>
