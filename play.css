@@ -1,15 +1,15 @@
 .player-event {
-    color: rgb(165, 220, 235);
-  }
+  color: rgb(165, 220, 235);
+}
 
 .player-name {
-    color: rgb(118, 190, 210);
-  }
-  
+  color: rgb(118, 190, 210);
+}
+
 #player-messages {
-    padding-top: 0.25em;
-    opacity: 0.7;
-  }
+  padding-top: 0.25em;
+  opacity: 0.7;
+}
 
 #notification {
   margin-top: 10px;
@@ -25,8 +25,10 @@
 }
 
 main {
-  position: relative; /* Ensures absolute children stay within this section */
-  padding-top: 20px; /* Adds spacing from the header */
+  position: relative;
+  /* Ensures absolute children stay within this section */
+  padding-top: 20px;
+  /* Adds spacing from the header */
   display: flex;
   flex-direction: center;
   align-items: center;
@@ -34,88 +36,102 @@ main {
 
 .game-info {
   position: absolute;
-  top: 10px;  /* Distance from the top of <main> */
-  left: 10px;  /* Align to the right */
+  top: 10px;
+  /* Distance from the top of <main> */
+  left: 10px;
+  /* Align to the right */
   text-align: left;
-  background-color: transparent; /* Optional: semi-transparent background */
+  background-color: transparent;
+  /* Optional: semi-transparent background */
   padding: 10px;
   border-radius: 10px;
-  width: 250px; /* Adjust width as needed */
+  width: 250px;
+  /* Adjust width as needed */
 }
 
 .players {
   position: absolute;
-  top: 10px;  /* Distance from the top of <main> */
-  right: 10px;  /* Align to the right */
+  top: 20px;
+  /* Distance from the top of <main> */
+  right: 10px;
+  /* Align to the right */
   text-align: right;
-  background-color: transparent; /* Optional: semi-transparent background */
+  background-color: transparent;
+  /* Optional: semi-transparent background */
   padding: 10px;
   border-radius: 10px;
-  width: 250px; /* Adjust width as needed */
+  width: 250px;
+  /* Adjust width as needed */
 }
 
-  .game {
-    position: relative;
-    width: 80vw;
-    height: 80vw;
-    min-width: 350px;
-    min-height: 350px;
-    max-width: min(80vmin, 1000px);
-    max-height: min(80vmin, 1000px);
-    margin-top: 90px;
-  }
-  
-  .button-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    grid-template-rows: repeat(3, 175px); /* 3 equal rows */
-    gap: 5px;
-    width: 100%;
-    height: auto;
-    justify-items: center;
-    align-items: center;
-  }
-  
-  .button-top-left,
-  .button-top-middle,
-  .button-top-right,
-  .button-middle-left,
-  .button-middle-middle,
-  .button-middle-right,
-  .button-bottom-left,
-  .button-bottom-middle,
-  .button-bottom-right {
-    width: 200px;
-    height: 150px;
-    border-radius: 50%; /* Make them circles */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 18px;
-    background-color: #231708;
-    border: solid #231708;
-  }
+.game {
+  position: relative;
+  width: 80vw;
+  height: auto;
+  min-width: 350px;
+  min-height: 350px;
+  max-width: min(80vmin, 1000px);
+  max-height: min(80vmin, 1000px);
+  margin-top: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .start-button {
-    position: relative;
-    top: 75px;
-    width: 20px;
-    padding: 10px;
-    border-radius: 10px;
-    margin-left: auto;
-    margin-right: auto;
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 equal columns */
+  grid-template-rows: repeat(3, 175px);
+  /* 3 equal rows */
+  gap: 5px;
+  width: 100%;
+  height: auto;
+  justify-items: center;
+  align-items: center;
+}
 
-  }
-  
-  .controls {
-    position: absolute;
-    border-radius: 50%;
-    width: 200px;
-    height: 200px;
-    padding: 2em;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-  }
+.button-top-left,
+.button-top-middle,
+.button-top-right,
+.button-middle-left,
+.button-middle-middle,
+.button-middle-right,
+.button-bottom-left,
+.button-bottom-middle,
+.button-bottom-right {
+  width: 200px;
+  height: 150px;
+  border-radius: 50%;
+  /* Make them circles */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+  background-color: #231708;
+  border: solid #231708;
+}
+
+.start-button {
+  position: relative;
+  top: 75px;
+  width: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.controls {
+  position: absolute;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  padding: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
