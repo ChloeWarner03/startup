@@ -93,12 +93,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Header, footer, and main content body** - This has been done in my main.css and all my pages link back to it for correct foramtting.
+- [x] **Navigation elements** - This has also been done in my main.css and the other pages also link to this to have the correct navbar and the same formatting
+- [x] **Responsive to window resizing** - Yes, all my pages are responsive to resizing in their proper .css
+- [x] **Application elements** - They are done with the login and password in the index along with creating user updates and scores in the play section and highscores. Along with style for the play section with the 3x3 grid and start
+- [x] **Application text content** - found throughout the pages and mainly on the about page 
+- [x] **Application images** - found in the navigation bar along with on the highscore page
 
 ## 🚀 React part 1: Routing deliverable
 
