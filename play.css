@@ -2,10 +2,6 @@
   color: rgb(165, 220, 235);
 }
 
-.player-name {
-  color: rgb(118, 190, 210);
-}
-
 #player-messages {
   padding-top: 0.25em;
   opacity: 0.7;
@@ -16,12 +12,12 @@
 }
 
 .event {
-  color: rgb(13, 56, 23);
+  color: white;
 }
 
 .player-name {
   font-weight: bold;
-  color: rgb(13, 56, 23);
+  color: white;
 }
 
 main {
@@ -49,12 +45,13 @@ main {
 .players {
   position: absolute;
   top: 20px;
-  right: 10px;
+  right: 20px;
   text-align: right;
   background-color: transparent;
   padding: 10px;
   border-radius: 10px;
   width: 250px;
+
 }
 
 .game {
@@ -83,14 +80,14 @@ main {
 }
 
 .button-container button {
-  width: 100%; /* Fill the grid cell */
+  width: 100%;
   height: 100%;
-  aspect-ratio: 1 / 1; /* Ensures circles remain proportional */
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: clamp(12px, 2vw, 18px); /* Responsive font size */
+  font-size: clamp(12px, 2vw, 18px);
   background-color: #231708;
   border: solid #231708;
 }
@@ -107,7 +104,6 @@ main {
   width: 200px;
   height: 150px;
   border-radius: 50%;
-  /* Make them circles */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,9 +125,9 @@ main {
 }
 
 #start-game {
-  margin-top: auto; /* Pushes it lower inside the flex container */
-  align-self: center; /* Ensures it's centered */
-  padding: 15px 30px; /* Adjust padding for a better look */
+  margin-top: auto;
+  align-self: center;
+  padding: 15px 30px;
   font-size: 18px;
 }
 
