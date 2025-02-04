@@ -1,99 +1,57 @@
-label {
-  font-size: 1.1em;
-  color: #2C5F2D; /* Dark green*/
-  margin-bottom: 8px;
-  display: block;
-}
-
 body {
   display: flex;
   flex-direction: column;
   min-width: 375px;
-  height: 100vh;
-  background-color: #D1F0C7 !important;
-  color: #C3E6CB;
-  font-family: 'Arial', sans-serif;
 }
 
 header {
-  flex: 0 0 80px;
-  background-color: #A67B5B;
-  padding: 10px;
-}
-
-.navbar-brand {
-  font-size: 1.5em;
-  font-weight:bold;
-  color: #F1E4C3 !important;
-}
-
-.navbar-nav .nav-link {
-  color: #F1E4C3 !important;
-  transition: color 0.3s ease-in-out;
-}
-
-.navbar-nav .nav-link:hover {
-  color: #97BC62FF !important; /* Olive Green */
+  flex: 0 80px;
+  background-color: #3D2B1F;
 }
 
 main {
-  flex: 1;
-  height: calc(100vh-110px);
-  overflow-y: auto; 
-  background-color: #A8D08D;
-  text-align: center;
-  padding: 20px;
-}
-
-h1 {
-  color: #F1E4C3;
-}
-
-.input-group-text {
-  background-color: #A67B5B; /* Warm Brown */
-  color: #F1E4C3;
-}
-
-input {
-  background-color: #F1E4C3;
-  color: #2C5F2D;
-  border: 2px solid #A67B5B;
-  padding: 8px;
-  border-radius: 5px;
-}
-
-button {
-  background-color: #97BC62FF; /* Olive Green */
-  color: #2C5F2D;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1em;
-  font-weight: bold;
-  border-radius: 8px;
-  transition: background 0.3s
-}
-
-button:hover {
-  background-color: #A67B5B; /* Warm Brown */
-  color: #F1E4C3;
+  flex: 1 calc(100vh - 110px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #937A62;
 }
 
 footer {
-  flex: 0 0 30px;
-  background-color: #8B5E3C; /* Darker Brown */
+  flex: 0 30px;
+}
+
+menu {
+  flex: 1;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  font-size: 0.9em;
+  /*  overwrite Bootstrap so the menu does not wrap */
+  flex-direction: row !important;
+  list-style: none;
+}
+
+.navbar-brand {
+  padding-left: 0.3em;
+  border-bottom: solid rgb(182, 182, 182) thin;
+}
+
+menu .nav-item {
+  padding: 0 0.3em;
+  color: white !important;
 }
 
 footer a {
-  text-decoration: none;
-  color: #F1E4C3;
-  transition: color 0.3s ease-in-out;
+  float: right;
 }
 
-footer a:hover {
-  color: #97BC62FF; /* Olive Green */
+@media (max-height: 600px) {
+  header {
+    display: none;
+  }
+  footer {
+    display: none;
+  }
+  main {
+    flex: 1 100vh;
+  }
 }
