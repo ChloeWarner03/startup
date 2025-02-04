@@ -16,19 +16,17 @@
 }
 
 .event {
-  color: rgb(165, 220, 235);
+  color: rgb(13, 56, 23);
 }
 
 .player-name {
   font-weight: bold;
-  color: rgb(118, 190, 210);
+  color: rgb(13, 56, 23);
 }
 
 main {
   position: relative;
-  /* Ensures absolute children stay within this section */
   padding-top: 20px;
-  /* Adds spacing from the header */
   display: flex;
   flex-direction: center;
   align-items: center;
@@ -37,31 +35,26 @@ main {
 .game-info {
   position: absolute;
   top: 10px;
-  /* Distance from the top of <main> */
   left: 10px;
-  /* Align to the right */
   text-align: left;
   background-color: transparent;
-  /* Optional: semi-transparent background */
   padding: 10px;
   border-radius: 10px;
   width: 250px;
-  /* Adjust width as needed */
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
 }
 
 .players {
   position: absolute;
   top: 20px;
-  /* Distance from the top of <main> */
   right: 10px;
-  /* Align to the right */
   text-align: right;
   background-color: transparent;
-  /* Optional: semi-transparent background */
   padding: 10px;
   border-radius: 10px;
   width: 250px;
-  /* Adjust width as needed */
 }
 
 .game {
@@ -72,7 +65,7 @@ main {
   min-height: 350px;
   max-width: min(80vmin, 1000px);
   max-height: min(80vmin, 1000px);
-  margin-top: 90px;
+  margin-top: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,14 +74,25 @@ main {
 .button-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* 3 equal columns */
-  grid-template-rows: repeat(3, 175px);
-  /* 3 equal rows */
+  grid-template-rows: repeat(3, 1fr);
   gap: 5px;
   width: 100%;
-  height: auto;
-  justify-items: center;
+  height: 80vmin;
+  max-width: 600px;
+  max-height: 600px;
+}
+
+.button-container button {
+  width: 100%; /* Fill the grid cell */
+  height: 100%;
+  aspect-ratio: 1 / 1; /* Ensures circles remain proportional */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  font-size: clamp(12px, 2vw, 18px); /* Responsive font size */
+  background-color: #231708;
+  border: solid #231708;
 }
 
 .button-top-left,
@@ -122,6 +126,13 @@ main {
   margin-left: auto;
   margin-right: auto;
 
+}
+
+#start-game {
+  margin-top: auto; /* Pushes it lower inside the flex container */
+  align-self: center; /* Ensures it's centered */
+  padding: 15px 30px; /* Adjust padding for a better look */
+  font-size: 18px;
 }
 
 .controls {
