@@ -50,7 +50,7 @@ menu .nav-item {
 }
 
 footer a {
-  float: left;
+  float: right;
 }
 
 @media (max-height: 600px) {
