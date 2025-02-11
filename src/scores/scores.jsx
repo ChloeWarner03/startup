@@ -4,10 +4,19 @@ export function Scores() {
     return (
         <main className="container-fluid text-center text-light">
 
-            <img width="300px" src="molewithcrown.png" style={{ borderRadius: '50%' }} alt="KingMole" />
+            <div id="picture" className="picture-box">
+                <img
+                    width="45px"
+                    height="45px"  // Set height equal to width for a circular shape
+                    src="molewithcrown.png"
+                    style={{ borderRadius: '50%' }}
+                    alt="KingMole"
+                />
+            </div>
+
             <h1>🏆HighScores:</h1>
             {/* Highscores will be saved in the database */}
-            <table className="table text-light">
+            <table className="table" >
                 <thead>
                     <tr>
                         <th>Rank #</th>
@@ -37,9 +46,9 @@ export function Scores() {
                     </tr>
                 </tbody>
             </table>
-
+            <br />
             <h1>Your Scores:</h1>
-            <table className="table text-light">
+            <table className="table">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -47,7 +56,7 @@ export function Scores() {
                         <th>Date</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody>s
                     <tr>
                         <td>Dan</td>
                         <td>35</td>
@@ -65,7 +74,7 @@ export function Scores() {
                     </tr>
                 </tbody>
             </table>
-
+            <br />
         </main>
     );
 }

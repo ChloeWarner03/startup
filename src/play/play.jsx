@@ -14,8 +14,10 @@ export function Play() {
                 </div>
             </div>
 
+
             <div className="game-info">
                 <span>Score: <span id="score">0</span></span>
+                <br />
                 <span>Time: <span id="time">60</span></span>
             </div>
 
@@ -35,6 +37,7 @@ export function Play() {
                     <button className="button-bottom-right"></button>
                 </div>
             </div>
+            <br />
 
         </main>
     );
