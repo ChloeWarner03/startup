@@ -2,60 +2,67 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import { BrowserRouter, Link, NavLink } from "react-router-dom";
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { Login } from './login/login';
+import { Play } from './play/play';
+import { Scores } from './scores/scores';
+import { About } from './about/about';
 
 export default function App() {
     return (
         <BrowserRouter>
-            <div className="bg-dark text-light" style="height: 100vh;">
-                <header class="container-fluid">
-                    <nav class="navbar navbar-dark">
-                        <img 
-                            width="55px" 
-                            src="molewithcrown.png" 
-                            style="border-radius: 50%;" 
-                            alt="KingMole" />
-                            <div class="navbar-brand" href="#">Whack-a-Mole<sup>&reg;</sup></div>
-                                 <menu class="navbar-nav">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="index.html">
-                                          Home
-                                         </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="play.html">
-                                            GamePlay
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="scores.html">
-                                            Scores
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="about.html">
-                                            About Whack-a-Mole
-                                        </a>
-                                    </li>
-                                 </menu>
-                            </div>
-                        </nav>
-                 </header>
+            <div className='bg-dark text-light' style={{ height: '100vh' }}>
+                <header className="container-fluid">
+                    <nav className="navbar navbar-dark">
+                        <img width="55px" src="molewithcrown.png" style="border-radius: 50%;" alt="KingMole" />
+                        <div className="navbar-brand" href="#">
+                            Whack-a-Mole<sup>&reg;</sup>
+                        </div>
+                        <menu className='navbar-nav'>
+                            <li className='nav-item'>
+                                <NavLink className='nav-link' to=''>
+                                    Login
+                                </NavLink>
+                            </li>
+                            <li className='nav-item'>
+                                <NavLink className='nav-link' to='play'>
+                                    GamePlay
+                                </NavLink>
+                            </li>
+                            <li className='nav-item'>
+                                <NavLink className='nav-link' to='scores'>
+                                    Scores
+                                </NavLink>
+                            </li>
+                            <li className='nav-item'>
+                                <NavLink className='nav-link' to='about'>
+                                    About Whack-a-Mole
+                                </NavLink>
+                            </li>
+                        </menu>
+                    </nav>
+                </header>
 
-                <main>App components go here</main>
+                <Routes>
+                    <Route path='/' element={<Login />} exact />
+                    <Route path='/play' element={<Play />} />
+                    <Route path='/scores' element={<Scores />} />
+                    <Route path='/about' element={<About />} />
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
 
-                <footer className="text-white">
-                    <div className="container-fluid">
-                        <span className="text-reset">Whack-a-Mole created by Chloe Warner</span>
-                        <br />
-                        <a className="text-reset" href="https://github.com/ChloeWarner03/startup">GitHub Repository</a>
+                <footer className='text-white'>
+                    <div className='container-fluid'>
+                        <span className='text-reset'>Whack-a-Mole created by Chloe Warner</span>
+                        <NavLink className='text-reset' href='https://github.com/ChloeWarner03/startup'>
+                            GitHub Repository
+                        </NavLink>
                     </div>
                 </footer>
             </div>
         </BrowserRouter>
-    );
+  );
 }
-
-function NotFound() {
-    return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
+            function NotFound() {
+  return <main className='container-fluid bg-secondary text-center'>404: Return to sender. Address unknown.</main>;
 }
