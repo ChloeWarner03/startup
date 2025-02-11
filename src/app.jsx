@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
+import moleImage from './molewithcrown.png';
 
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
@@ -14,7 +15,7 @@ export default function App() {
             <div className='bg-dark text-light' style={{ height: '100vh' }}>
                 <header className="container-fluid">
                     <nav className="navbar navbar-dark">
-                        <img width="55px" src="molewithcrown.png" style="border-radius: 50%;" alt="KingMole" />
+                        <img width="55px" src={moleImage} style={{ borderRadius: '50%' }} alt="KingMole" />
                         <div className="navbar-brand" href="#">
                             Whack-a-Mole<sup>&reg;</sup>
                         </div>
