@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 export function Login() {
     return (
         <main className="container-fluid text-center">
@@ -18,7 +17,6 @@ export function Login() {
                         <input className="form-control" type="password" placeholder="password" />
                     </div>
                     <button type="submit" className="btn btn-outline-light">Login</button>
-
                     <button type="submit" className="btn  btn-outline-light">Create an Account</button>
                 </form>
             </div>
