@@ -82,14 +82,14 @@ main {
 }
 
 .button-container button {
-  width: 100%;
-  height: 100%;
+  width: 10vw; /* Adjust width based on viewport */
+  height: 10vw; /* Adjust height based on viewport */
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: clamp(12px, 2vw, 18px);
+  font-size: clamp(12px, 2vw, 18px); /* Dynamically adjust font size */
   background-color: #231708;
   border: solid #231708;
 }
@@ -103,8 +103,8 @@ main {
 .button-bottom-left,
 .button-bottom-middle,
 .button-bottom-right {
-  width: 200px;
-  height: 150px;
+  width: 15vw; /* Adjust width based on viewport */
+  height: 15vw; /* Adjust height based on viewport */
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -136,8 +136,8 @@ main {
 .controls {
   position: absolute;
   border-radius: 50%;
-  width: 200px;
-  height: 200px;
+  width: 20vw; /* Adjust width based on viewport */
+  height: 20vw; /* Adjust height based on viewport */
   padding: 2em;
   display: flex;
   align-items: center;
