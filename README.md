@@ -104,10 +104,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - Routing between login and voting components.
-
+- [x] **Bundled using Vite** -  I did this part as we went through it during class
+- [x] **Components** - I added all the different components for my pages login, play, about and highscores. Followed the steps in class and followed teh video
+- [x] **Router** - There is routing between the different pages and everything from class instruction and video
 ## 🚀 React part 2: Reactivity
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
