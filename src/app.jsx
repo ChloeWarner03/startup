@@ -54,9 +54,9 @@ export default function App() {
                 <footer className='text-white'>
                     <div className='container-fluid'>
                         <span className='text-reset'>Whack-a-Mole created by Chloe Warner</span>
-                        <a className='text-reset' href='https://github.com/webprogramming260/simon-react' target='_blank' rel='noopener noreferrer'>
+                        <NavLink className='text-reset' href='https://github.com/webprogramming260/simon-react' target='_blank' rel='noopener noreferrer'>
                           Source
-                        </a>
+                        </NavLink>
                     </div>
                 </footer>
             </div>
