@@ -47,6 +47,19 @@ cd /c/Development/CS260\ Web\ Programming/startup
 delopy:
 ./deployFiles.sh -k C:/Users/chloe/Downloads/webserver260.pem -h wackamole.click -s startup
 
+## React Notes
+go to gitbash:
+Simon: 
+to go to simon:
+cd /c/Development/CS260\ Web\ Programming/simon-react-p1
+delopy:
+./deployReact.sh -k C:/Users/chloe/Downloads/webserver260.pem -h wackamole.click -s simon
+startup: 
+to to startup:
+cd /c/Development/CS260\ Web\ Programming/startup
+delopy:
+./deployReact.sh -k C:/Users/chloe/Downloads/webserver260.pem -h wackamole.click -s startup
+
 
 
 
