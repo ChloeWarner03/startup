@@ -1,5 +1,4 @@
 import React from 'react';
-import './play.css';
 
 
 export function Login() {
@@ -7,7 +6,8 @@ export function Login() {
         <main className="container-fluid text-center">
             <div className="login-box">
                 <h1>Let's Whack-a-Mole!</h1>
-                <small>Enter a valid email. (Validation via MailboxLayer API goes here)</small>
+                <small>Enter a valid email. (Validation via MailboxLayer API goes here)
+                </small>
                 <form method="get" action="play.html">
                     <div className="input-group mb-3">
                         <span className="input-group-text">✉</span>
