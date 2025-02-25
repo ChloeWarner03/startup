@@ -1,4 +1,4 @@
-/* import React from 'react';
+ import React from 'react';
 import './play.css';
 
 export function Play() {
@@ -41,4 +41,4 @@ export function Play() {
 
         </main>
     );
-} */
+} 

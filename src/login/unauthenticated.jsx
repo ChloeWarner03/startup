@@ -33,9 +33,9 @@ export function Unauthenticated(props) {
                 </div>
                 <button type="submit" className="btn btn-outline-light">Login</button>
                 <button type="submit" className="btn  btn-outline-light">Create an Account</button>
-        </div >
+            </div >
 
             <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
-    </>
-  );
+        </>
+    );
 }
