@@ -1,0 +1,145 @@
+.player-event {
+    color: rgb(165, 220, 235);
+  }
+  
+  #player-messages {
+    padding-top: 0.25em;
+    opacity: 0.7;
+  }
+  
+  #notification {
+    margin-top: 10px;
+  }
+  
+  .event {
+    color: white;
+  }
+  
+  .player-name {
+    font-weight: bold;
+    color: white;
+  }
+  
+  main {
+    position: relative;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+  }
+  
+  .game-info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-align: left;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 10px;
+    width: 250px;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .players {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-align: right;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 10px;
+    width: 250px;
+  
+  }
+  
+  .game {
+    position: relative;
+    width: 80vw;
+    height: auto;
+    width: 80vw;
+    height: 80vw;
+    position: absolute;
+    min-width: 350px;
+    min-height: 350px;
+    max-width: min(80vmin, 1000px);
+    max-height: min(80vmin, 1000px);
+    margin-top: 50px;
+  
+  }
+  
+  .button-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    width: 100%;
+    height: 80vmin;
+    max-width: 600px;
+    max-height: 600px;
+  }
+  
+  .button-container button {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(12px, 2vw, 18px);
+    background-color: #231708;
+    border: solid #231708;
+  }
+  
+  .button-top-left,
+  .button-top-middle,
+  .button-top-right,
+  .button-middle-left,
+  .button-middle-middle,
+  .button-middle-right,
+  .button-bottom-left,
+  .button-bottom-middle,
+  .button-bottom-right {
+    width: 200px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    background-color: #231708;
+    border: solid #231708;
+  }
+  
+  .start-button {
+    position: relative;
+    top: 75px;
+    width: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  
+  }
+  
+  #start-game {
+    margin-top: auto;
+    align-self: center;
+    padding: 15px 30px;
+    font-size: 18px;
+  }
+  
+  .controls {
+    position: absolute;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    padding: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+  }
