@@ -109,7 +109,7 @@ export function Scores() {
 }
 */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './scores.css';
 
@@ -118,13 +118,17 @@ export function Scores() {
 
   // Demonstrates calling a service asynchronously so that
   // React can properly update state objects with the results.
-  React.useEffect(() => {
+  useEffect(() => {
     const scoresText = localStorage.getItem('scores');
     if (scoresText) {
-      setScores(JSON.parse(scoresText));
+      let storedScores = JSON.parse(scoresText);
+      if (storedScores.length > 7) {
+        storedScores = storedScores.slice(-7); // Keep only the last 7 scores
+        localStorage.setItem('scores', JSON.stringify(storedScores)); // Update storage
+      }
+      setScores(storedScores.reverse());
     }
   }, []);
-
   // Demonstrates rendering an array with React
   const scoreRows = [];
   if (scores.length) {
