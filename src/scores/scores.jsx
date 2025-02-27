@@ -1,6 +1,59 @@
+import React from 'react';
+
+import './scores.css';
+
+export function Scores() {
+    const [scores, setScores] = React.useState([]);
+
+    // Demonstrates calling a service asynchronously so that
+    // React can properly update state objects with the results.
+    React.useEffect(() => {
+        const scoresText = localStorage.getItem('scores');
+        if (scoresText) {
+            setScores(JSON.parse(scoresText));
+        }
+    }, []);
+
+    const scoreRows = [];
+    if (scores.length) {
+        for (const [i, score] of scores.entries()) {
+            scoreRows.push(
+                <tr key={i}>
+                    <td>{i}</td>
+                    <td>{score.name.split('@')[0]}</td>
+                    <td>{score.score}</td>
+                    <td>{score.date}</td>
+                </tr>
+            );
+        }
+    } else {
+        scoreRows.push(
+            <tr key='0'>
+                <td colSpan='4'>Be the first to score</td>
+            </tr>
+        );
+    }
+
+    return (
+        <main className='container-fluid bg-secondary text-center'>
+            <table className='table'>
+                <thead className='table'>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Score</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id='scores'>{scoreRows}</tbody>
+            </table>
+        </main>
+    );
+}
+
 export function Scores() {
     return (
-        <main className="container-fluid text-center text-light">
+        <main className='container-fluid bg-secondary text-center'>
 
             <div id="picture" className="picture-box">
                 <img
@@ -13,7 +66,7 @@ export function Scores() {
             </div>
 
             <h1>🏆HighScores:</h1>
-            {/*Highscores will be saved in the database*/ }
+            {/*Highscores will be saved in the database*/}
             <table className="table" >
                 <thead>
                     <tr>
@@ -23,26 +76,7 @@ export function Scores() {
                         <th>Date</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>James</td>
-                        <td>50</td>
-                        <td>January 24, 2025</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Dan</td>
-                        <td>41</td>
-                        <td>January 24, 2025</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Cookie</td>
-                        <td>32</td>
-                        <td>January 24, 2025</td>
-                    </tr>
-                </tbody>
+                <tbody id='scores'>{scoreRows}</tbody>
             </table>
             <br />
             <h1>Your Scores:</h1>
@@ -52,83 +86,10 @@ export function Scores() {
                         <th>Name</th>
                         <th>Score</th>
                         <th>Date</th>
-                    </tr>
+                        </tr>
                 </thead>
-                <tbody>s
-                    <tr>
-                        <td>Dan</td>
-                        <td>35</td>
-                        <td>January 21, 2025</td>
-                    </tr>
-                    <tr>
-                        <td>Dan</td>
-                        <td>32</td>
-                        <td>January 19, 2025</td>
-                    </tr>
-                    <tr>
-                        <td>Dan</td>
-                        <td>27</td>
-                        <td>January 17, 2025</td>
-                    </tr>
-                </tbody>
+                <tbody id='scores'>{scoreRows}</tbody>
             </table>
-            <br />
         </main>
     );
-} 
-
-
-import React from 'react';
-
-import './scores.css';
-
-export function Scores() {
-  const [scores, setScores] = React.useState([]);
-
-  // Demonstrates calling a service asynchronously so that
-  // React can properly update state objects with the results.
-  React.useEffect(() => {
-    const scoresText = localStorage.getItem('scores');
-    if (scoresText) {
-      setScores(JSON.parse(scoresText));
-    }
-  }, []);
-
-  // Demonstrates rendering an array with React
-  const scoreRows = [];
-  if (scores.length) {
-    for (const [i, score] of scores.entries()) {
-      scoreRows.push(
-        <tr key={i}>
-          <td>{i}</td>
-          <td>{score.name.split('@')[0]}</td>
-          <td>{score.score}</td>
-          <td>{score.date}</td>
-        </tr>
-      );
-    }
-  } else {
-    scoreRows.push(
-      <tr key='0'>
-        <td colSpan='4'>Be the first to score</td>
-      </tr>
-    );
-  }
-
-  return (
-    <main className='container-fluid bg-secondary text-center'>
-      <table className='table table-warning table-striped-columns'>
-        <thead className='table-dark'>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Score</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody id='scores'>{scoreRows}</tbody>
-      </table>
-    </main>
-  );
 }
-
