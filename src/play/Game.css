@@ -83,9 +83,12 @@ main {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 10px;
-  width: 300px; /* Adjust based on your design */
-  height: 300px;
-  margin-top: 20px;
+  width: 40vw;
+  height: 40vw;
+  min-width: 300px;
+  min-height: 300px;
+  max-width: min(60vmin, 1000px);
+  max-height: min(60vmin, 1000px);
 }
 
 .button-container {
@@ -97,6 +100,7 @@ main {
   height: 80vmin;
   max-width: 600px;
   max-height: 600px;
+  display: flex;
 }
 
 .hole {
@@ -117,6 +121,7 @@ main {
   align-self: center;
   padding: 15px 30px;
   font-size: 18px;
+  
 
 }
 

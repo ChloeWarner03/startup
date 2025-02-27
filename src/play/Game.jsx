@@ -142,7 +142,7 @@ export function Game({ userName }) {
 
   return (
     <div className="game-container">
-      <h2>Whack-a-Mole, {userName}!</h2>
+
       
       {/* Game Info */}
       <div className="game-info">
