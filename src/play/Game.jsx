@@ -32,7 +32,7 @@ export function Game({ userName }) {
       setMoleIndex(Math.floor(Math.random() * 9));
     };
 
-    updateMole(); // Show mole immediately
+    updateMole(); 
     const moleInterval = setInterval(updateMole, moleSpeed);
 
     return () => clearInterval(moleInterval);
@@ -41,6 +41,9 @@ export function Game({ userName }) {
   const handleStart = () => {
     if (gameOver) {
       setGameOver(false);
+      setScore(0);
+      setTimer(0);
+      setMoleSpeed(1000);
     }
   };
 
