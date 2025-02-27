@@ -35,25 +35,7 @@ export function Scores() {
     }
 
     return (
-        <main className='container-fluid bg-secondary text-center'>
-            <table className='table'>
-                <thead className='table'>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Score</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody id='scores'>{scoreRows}</tbody>
-            </table>
-        </main>
-    );
-}
-
-export function Scores() {
-    return (
-        <main className='container-fluid bg-secondary text-center'>
+        <main className='container-fluid  text-center'>
 
             <div id="picture" className="picture-box">
                 <img
