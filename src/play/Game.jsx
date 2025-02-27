@@ -4,50 +4,43 @@ import {Scores} from "../scores/scores";
 
 export function Game({ userName }) {
   const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(0);
   const [gameOver, setGameOver] = useState(true);
   const [moleIndex, setMoleIndex] = useState(null);
+  const [moleSpeed , setMoleSpeed] = useState(1000);
 
   useEffect(() => {
-    let countdown;
+    let timeCounter;
     let moleInterval;
 
     if (!gameOver) {
       setScore(0);
-      setTimer(60);
+      setTimer(0);
+      setMoleSpeed(1000);
 
-      // Timer countdown
-      countdown = setInterval(() => {
-        setTimer((prev) => {
-          if (prev <= 1) {
-            clearInterval(countdown);
-            clearInterval(moleInterval);
-            setGameOver(true);
-            saveScore(score);
-            alert(`Game Over!\nYour final score: ${score}`);
-            return 60;
-          }
-          return prev - 1;
-        });
+      // Timer countup
+      timeCounter= setInterval (() => {
+        setTimer((prev) => prev + 1);
       }, 1000);
 
+      
       // Mole random appearance
       moleInterval = setInterval(() => {
         setMoleIndex(Math.floor(Math.random() * 9));
-      }, 1000);
+      }, moleSpeed);
     }
-
+  
     return () => {
-      clearInterval(countdown);
-      clearInterval(moleInterval);
+      clearInterval(timeCounter);
     };
-  }, [gameOver]);
-
+  }, [gameOver]); // Runs when game starts or stops
+  
   const handleStart = () => {
     if (gameOver) {
       setGameOver(false);
       setScore(0);
-      setTimer(60);
+      setTimer(0);
+      setMoleSpeed(1000);
     }
   };
 
@@ -61,12 +54,13 @@ export function Game({ userName }) {
     if (!gameOver && index === moleIndex) {
       setScore((prev) => prev + 1);
       setMoleIndex(null);
+      setMoleSpeed((prevSpeed) => Math.max(300, prevSpeed * 0.5));
     }
   };
 
-  function saveScore(fianlScore) {
+  function saveScore(finalScore) {
     const date = new Date().toLocaleDateString();
-    const newScore = {name: userName, score: fianlScore, date: date };
+    const newScore = {name: userName, score: finalScore, date: date };
   
     const storedScores = JSON.parse(localStorage.getItem("scores")) || [];
     storedScores.push(newScore);
