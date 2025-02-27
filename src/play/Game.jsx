@@ -143,14 +143,23 @@ export function Game({ userName }) {
   return (
     <div className="game-container">
       <h2>Whack-a-Mole, {userName}!</h2>
-      <p id="score">Score: {score}</p>
-      <p id="timer">Time: {timer}s</p>
+      
+      {/* Game Info */}
+      <div className="game-info">
+        <span>Score: <span id="score">{score}</span></span>
+        <br />
+        <span>Time: <span id="time">{timer}</span>s</span>
+      </div>
+
+      {/* Game Controls */}
       <button id="startButton" onClick={handleStart} disabled={!gameOver}>
         Start Game
       </button>
       <button id="endButton" onClick={handleEnd} disabled={gameOver}>
         End Game
       </button>
+
+      {/* Game Grid */}
       <div className="grid">
         {Array.from({ length: 9 }).map((_, index) => (
           <div
@@ -161,15 +170,5 @@ export function Game({ userName }) {
         ))}
       </div>
     </div>
-
-
-
-<div className="game-info">
-<span>Score: <span id="score">0</span></span>
-<br />
-<span>Time: <span id="time">60</span></span>
-</div>
-
-<button type="submit" className="btn btn-outline-light" id="start-game">Start Game</button>
   );
 }
