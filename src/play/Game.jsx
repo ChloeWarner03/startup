@@ -1,46 +1,46 @@
 import React, { useState, useEffect } from "react";
 import "./Game.css";
-import {Scores} from "../scores/scores";
+import { Scores } from "../scores/scores";
 
 export function Game({ userName }) {
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(0);
   const [gameOver, setGameOver] = useState(true);
   const [moleIndex, setMoleIndex] = useState(null);
-  const [moleSpeed , setMoleSpeed] = useState(1000);
+  const [moleSpeed, setMoleSpeed] = useState(1000);
 
+  // Timer Effect
   useEffect(() => {
-    let timeCounter;
-    let moleInterval;
+    if (gameOver) return;
 
-    if (!gameOver) {
-      setScore(0);
-      setTimer(0);
-      setMoleSpeed(1000);
+    setScore(0);
+    setTimer(0);
+    setMoleSpeed(1000);
 
-      // Timer countup
-      timeCounter= setInterval (() => {
-        setTimer((prev) => prev + 1);
-      }, 1000);
+    const timeCounter = setInterval(() => {
+      setTimer((prev) => prev + 1);
+    }, 1000);
 
-      
-      // Mole random appearance
-      moleInterval = setInterval(() => {
-        setMoleIndex(Math.floor(Math.random() * 9));
-      }, moleSpeed);
-    }
-  
-    return () => {
-      clearInterval(timeCounter);
+    return () => clearInterval(timeCounter);
+  }, [gameOver]);
+
+  // Mole Movement Effect
+  useEffect(() => {
+    if (gameOver) return;
+
+    const updateMole = () => {
+      setMoleIndex(Math.floor(Math.random() * 9));
     };
-  }, [gameOver]); // Runs when game starts or stops
-  
+
+    updateMole(); // Show mole immediately
+    const moleInterval = setInterval(updateMole, moleSpeed);
+
+    return () => clearInterval(moleInterval);
+  }, [moleSpeed, gameOver]);
+
   const handleStart = () => {
     if (gameOver) {
       setGameOver(false);
-      setScore(0);
-      setTimer(0);
-      setMoleSpeed(1000);
     }
   };
 
@@ -54,24 +54,23 @@ export function Game({ userName }) {
     if (!gameOver && index === moleIndex) {
       setScore((prev) => prev + 1);
       setMoleIndex(null);
-      setMoleSpeed((prevSpeed) => Math.max(300, prevSpeed * 0.5));
+
+      // Update mole speed dynamically
+      setMoleSpeed((prevSpeed) => Math.max(300, prevSpeed * 0.98)); // Slightly slower decay
     }
   };
 
   function saveScore(finalScore) {
     const date = new Date().toLocaleDateString();
-    const newScore = {name: userName, score: finalScore, date: date };
-  
+    const newScore = { name: userName, score: finalScore, date };
+
     const storedScores = JSON.parse(localStorage.getItem("scores")) || [];
     storedScores.push(newScore);
-    localStorage.setItem("scores",JSON.stringify(storedScores));
-
+    localStorage.setItem("scores", JSON.stringify(storedScores));
   }
 
   return (
     <div className="game-container">
-
-      
       {/* Game Info */}
       <div className="game-info">
         <span>Score: <span id="score">{score}</span></span>
