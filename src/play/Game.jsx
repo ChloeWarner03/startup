@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Game.css";
+import bombImg from "./bomb.png";
 import { Scores } from "../scores/scores";
 
 export function Game({ userName }) {
@@ -8,6 +9,7 @@ export function Game({ userName }) {
   const [gameOver, setGameOver] = useState(true);
   const [moleIndex, setMoleIndex] = useState(null);
   const [moleSpeed, setMoleSpeed] = useState(1000);
+  const [bombIndex, setBombIndex] = useState(null);
 
   // Timer Effect
   useEffect(() => {
@@ -16,6 +18,7 @@ export function Game({ userName }) {
     setScore(0);
     setTimer(0);
     setMoleSpeed(1000);
+    setBombIndex(null);
 
     const timeCounter = setInterval(() => {
       setTimer((prev) => prev + 1);
@@ -28,12 +31,20 @@ export function Game({ userName }) {
   useEffect(() => {
     if (gameOver) return;
 
-    const updateMole = () => {
-      setMoleIndex(Math.floor(Math.random() * 9));
+    const updateObjects = () => {
+      const newIndex = Math.floor(Math.random() * 9);
+      if (Math.random() < 0.2) {
+        // 20% chance to spawn a bomb
+        setMoleIndex(null);
+        setBombIndex(newIndex);
+      } else {
+        setBombIndex(null);
+        setMoleIndex(newIndex);
+      }
     };
 
-    updateMole(); 
-    const moleInterval = setInterval(updateMole, moleSpeed);
+    updateObjects();
+    const moleInterval = setInterval(updateObjects, moleSpeed);
 
     return () => clearInterval(moleInterval);
   }, [moleSpeed, gameOver]);
@@ -44,6 +55,7 @@ export function Game({ userName }) {
       setScore(0);
       setTimer(0);
       setMoleSpeed(1000);
+      setBombIndex(null);
     }
   };
 
@@ -59,9 +71,16 @@ export function Game({ userName }) {
       setMoleIndex(null);
 
       // Update mole speed dynamically
-      setMoleSpeed((prevSpeed) => Math.max(300, prevSpeed * 0.98)); // Slightly slower decay
+      setMoleSpeed((prevSpeed) => Math.max(300, prevSpeed * 0.98));
     }
   };
+
+  const handleBombClick = () => {
+    if (!gameOver) {
+      handleEnd();
+    }
+  };
+
 
   function saveScore(finalScore) {
     const date = new Date().toLocaleDateString();
@@ -95,8 +114,10 @@ export function Game({ userName }) {
           <div
             key={index}
             className={`hole ${index === moleIndex ? "mole" : ""}`}
-            onClick={() => handleMoleClick(index)}
-          ></div>
+            onClick={() => (index === bombIndex ? handleBombClick() : handleMoleClick(index))}
+          >
+            {index === bombIndex && <img src={bombImg} alt="Bomb" className="bomb" />}
+          </div>
         ))}
       </div>
     </div>
