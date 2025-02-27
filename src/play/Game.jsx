@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Game.css";
+import {Scores} from "../scores/scores";
 
 export function Game({ userName }) {
   const [score, setScore] = useState(0);
@@ -22,6 +23,7 @@ export function Game({ userName }) {
             clearInterval(countdown);
             clearInterval(moleInterval);
             setGameOver(true);
+            saveScore(score);
             alert(`Game Over!\nYour final score: ${score}`);
             return 60;
           }
@@ -51,6 +53,7 @@ export function Game({ userName }) {
 
   const handleEnd = () => {
     setGameOver(true);
+    saveScore(score);
     alert(`Game Ended!\nYour final score: ${score}`);
   };
 
@@ -60,6 +63,16 @@ export function Game({ userName }) {
       setMoleIndex(null);
     }
   };
+
+  function saveScore(fianlScore) {
+    const date = new Date().toLocaleDateString();
+    const newScore = {name: userName, score: fianlScore, date: date };
+  
+    const storedScores = JSON.parse(localStorage.getItem("scores")) || [];
+    storedScores.push(newScore);
+    localStorage.setItem("scores",JSON.stringify(storedScores));
+
+  }
 
   return (
     <div className="game-container">

@@ -3,12 +3,5 @@ td {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  
+  padding: 5px;
 }
-
-table {
-  max-width: 60vw;
-
-}
-
-
