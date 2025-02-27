@@ -111,8 +111,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x ] **All functionality implemented or mocked out** - login adn create account works, along iwth you are able to play a whack a mole game, the players are mocked out on the top right and the time and the scores change. you are then also able to see your updated scores in the score secion along with the about page ahs the inforamtion that you need
+- [x] **Hooks** - everything is on the pages and set up for it
 
 ## 🚀 Service deliverable
 
