@@ -152,12 +152,9 @@ export function Scores() {
 
   return (
     <main className='container-fluid  text-center'>
-    <div id="picture" className="picture-box">
-      <img
-        width="100px"
-        height="100px"
+    <div id="picture">
+      <img className = "mole"
         src="/molewithcrown.png"
-        style={{ borderRadius: "50%" }}
         alt="KingMole"
       />
     </div>

@@ -4,4 +4,11 @@ td {
   white-space: nowrap;
   text-overflow: ellipsis;
   padding: 5px;
+  position: top;
+}
+
+.mole {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
 }
