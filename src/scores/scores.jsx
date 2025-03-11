@@ -118,17 +118,14 @@ export function Scores() {
 
   // Demonstrates calling a service asynchronously so that
   // React can properly update state objects with the results.
-  useEffect(() => {
-    const scoresText = localStorage.getItem('scores');
-    if (scoresText) {
-      let storedScores = JSON.parse(scoresText);
-      if (storedScores.length > 7) {
-        storedScores = storedScores.slice(-7); // Keep only the last 7 scores
-        localStorage.setItem('scores', JSON.stringify(storedScores)); // Update storage
-      }
-      setScores(storedScores.reverse());
-    }
+  React.useEffect(() => {
+    fetch('/api/scores')
+      .then((response) => response.json())
+      .then((scores) => {
+        setScores(scores);
+      });
   }, []);
+
   // Demonstrates rendering an array with React
   const scoreRows = [];
   if (scores.length) {
