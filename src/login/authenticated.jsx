@@ -21,6 +21,7 @@ export function Authenticated(props) {
       });
   }
 
+
   return (
     <div>
       <div className='playerName'>{props.userName}</div>
