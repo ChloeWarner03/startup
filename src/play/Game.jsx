@@ -3,6 +3,18 @@ import "./Game.css";
 import bombImg from "./bomb.png";
 import { Scores } from "../scores/scores";
 
+const GameNotifier = {
+  broadcastEvent: (userName, event, data) => {
+    console.log(`${userName} triggered event: ${event}`, data);
+    // Placeholder for broadcasting the event, e.g., WebSocket
+  }
+};
+
+const GameEvent = {
+  Start: 'start',
+  End: 'end'
+};
+
 export function Game({ userName }) {
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(0);
@@ -57,6 +69,7 @@ export function Game({ userName }) {
       setMoleSpeed(1000);
       setBombIndex(null);
     }
+    GameNotifier.broadcastEvent(userName, GameEvent.Start, {});
   };
 
   const handleEnd = () => {
@@ -80,7 +93,6 @@ export function Game({ userName }) {
       handleEnd();
     }
   };
-
 
   async function saveScore(score) {
     const date = new Date().toLocaleDateString();
