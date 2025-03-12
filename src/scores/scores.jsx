@@ -109,7 +109,7 @@ export function Scores() {
 }
 */
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import './scores.css';
 
@@ -148,27 +148,24 @@ export function Scores() {
   }
 
   return (
-    <main className='container-fluid  text-center'>
-    <div id="picture">
-      <img className = "mole"
-        src="/molewithcrown.png"
-        alt="KingMole"
-      />
-    </div>
-    <div className='container-fluid  text-center'>
-    <h1>🏆Scores:</h1>
-      <table className = "table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Score</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody id="scores">{scoreRows}</tbody>
-      </table>
-    </div>
-  </main>
-);
+    <main className='container-fluid text-center'>
+      <div id="picture">
+        <img className="mole" src="/molewithcrown.png" alt="KingMole" />
+      </div>
+      <div className='container-fluid text-center'>
+        <h1>🏆Scores:</h1>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Score</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id='scores'>{scoreRows}</tbody>
+        </table>
+      </div>
+    </main>
+  );
 }
