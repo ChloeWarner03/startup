@@ -8,12 +8,6 @@ export function Unauthenticated(props) {
     const [displayError, setDisplayError] = React.useState(null);
     const [isValidating, setIsValidating] = React.useState(false);
 
-    // Simple email format validation
-    const validateEmailFormat = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-
     async function loginUser() {
         try {
             if (!userName || !password) {
@@ -56,12 +50,6 @@ export function Unauthenticated(props) {
         try {
             if (!userName || !password) {
                 setDisplayError('⚠ Please enter both email and password');
-                return;
-            }
-
-            // Validate email format first
-            if (!validateEmailFormat(userName)) {
-                setDisplayError('⚠ Please enter a valid email address format');
                 return;
             }
 
