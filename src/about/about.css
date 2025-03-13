@@ -31,10 +31,9 @@
 }
 
 .picture-box {
-  height: calc(100px + 1em);
+  height: calc(100px + 6em);
   margin-bottom: 1em;
   padding: 0.5em;
-  background: rgb(86, 89, 93);
   border-radius: 5px;
   overflow: hidden;
   flex-grow:1;

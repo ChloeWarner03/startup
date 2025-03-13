@@ -58,7 +58,6 @@ export function Unauthenticated(props) {
             <div className="container-fluid text-center">
                 <div className="login-box">
                     <h1>Let's Whack-a-Mole!</h1>
-                    <small>Enter a valid email. (Validation via MailboxLayer API goes here)</small>
 
                     <div className="input-group">
                         <span className="input-group-text">✉</span>
