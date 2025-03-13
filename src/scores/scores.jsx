@@ -1,4 +1,4 @@
-/*import React from 'react';
+import React from 'react';
 
 import './scores.css';
 
@@ -15,7 +15,6 @@ export function Scores() {
     const sortedScores = [...scores.sort((a, b) => b.score - a.score)]
     const highScores = sortedScores.slice(0, 4);
     const userScores = sortedScores.slice(0, 4);
-
 
     const scoreRows = [];
     if (scores.length) {
@@ -39,7 +38,6 @@ export function Scores() {
 
     return (
         <main className='container-fluid  text-center'>
-
             <div id="picture" className="picture-box">
                 <img
                     width="70px"
@@ -51,7 +49,6 @@ export function Scores() {
             </div>
 
             <h1>🏆HighScores:</h1>
-            {Highscores will be saved in the database}
             <table className="table" >
                 <thead>
                     <tr>
@@ -79,8 +76,6 @@ export function Scores() {
             </table>
             <br />
 
-
-
             <h1>Your Scores:</h1>
             <table className="table">
                 <thead>
@@ -106,66 +101,4 @@ export function Scores() {
             </table>
         </main>
     );
-}
-*/
-
-import React from 'react';
-
-import './scores.css';
-
-export function Scores() {
-  const [scores, setScores] = React.useState([]);
-
-  // Demonstrates calling a service asynchronously so that
-  // React can properly update state objects with the results.
-  React.useEffect(() => {
-    fetch('/api/scores')
-      .then((response) => response.json())
-      .then((scores) => {
-        setScores(scores);
-      });
-  }, []);
-
-  // Demonstrates rendering an array with React
-  const scoreRows = [];
-  if (scores.length) {
-    for (const [i, score] of scores.entries()) {
-      scoreRows.push(
-        <tr key={i}>
-          <td>{i}</td>
-          <td>{score.name.split('@')[0]}</td>
-          <td>{score.score}</td>
-          <td>{score.date}</td>
-        </tr>
-      );
-    }
-  } else {
-    scoreRows.push(
-      <tr key='0'>
-        <td colSpan='4'>Be the first to score</td>
-      </tr>
-    );
-  }
-
-  return (
-    <main className='container-fluid text-center'>
-      <div id="picture">
-        <img className="mole" src="/molewithcrown.png" alt="KingMole" />
-      </div>
-      <div className='container-fluid text-center'>
-        <h1>🏆Scores:</h1>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Score</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody id='scores'>{scoreRows}</tbody>
-        </table>
-      </div>
-    </main>
-  );
 }

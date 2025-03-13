@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite';
 
-export default defineConfig({
+export default {
   server: {
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/api': 'http://localhost:3000', // Your backend URL
     },
   },
-});
+};

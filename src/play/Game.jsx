@@ -94,15 +94,26 @@ export function Game({ userName }) {
     }
   };
 
-  async function saveScore(score) {
+  function saveScore(score) {
     const date = new Date().toLocaleDateString();
     const newScore = { name: userName, score: score, date: date };
 
-    await fetch('/api/score', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(newScore),
-    });
+    // Get existing scores from localStorage
+    const scoresText = localStorage.getItem('scores');
+    const scores = scoresText ? JSON.parse(scoresText) : [];
+    
+    // Add new score
+    scores.push(newScore);
+    
+    // Sort scores and keep top 10
+    scores.sort((a, b) => b.score - a.score);
+    if (scores.length > 10) {
+      scores.length = 10;
+    }
+    
+    // Save back to localStorage
+    localStorage.setItem('scores', JSON.stringify(scores));
+    loadScores();
 
     // Let other players know the game has concluded
     GameNotifier.broadcastEvent(userName, GameEvent.End, newScore);
@@ -137,6 +148,9 @@ export function Game({ userName }) {
           </div>
         ))}
       </div>
+
+      {/* Display Scores */}
+      <Scores scores={scores} />
     </div>
   );
 }
