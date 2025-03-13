@@ -6,9 +6,29 @@ export function Unauthenticated(props) {
     const [userName, setUserName] = React.useState(props.userName);
     const [password, setPassword] = React.useState('');
     const [displayError, setDisplayError] = React.useState(null);
+    const [isValidating, setIsValidating] = React.useState(false);
+
+    // Simple email format validation
+    const validateEmailFormat = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
 
     async function loginUser() {
         try {
+            if (!userName || !password) {
+                setDisplayError('⚠ Please enter both email and password');
+                return;
+            }
+
+            // Validate email format first
+            if (!validateEmailFormat(userName)) {
+                setDisplayError('⚠ Please enter a valid email address format');
+                return;
+            }
+
+            setIsValidating(true);
+
             const response = await fetch('/api/auth/login', {
                 method: 'POST',
                 headers: {
@@ -27,11 +47,26 @@ export function Unauthenticated(props) {
             }
         } catch (error) {
             setDisplayError('⚠ Error connecting to service');
+        } finally {
+            setIsValidating(false);
         }
     }
 
     async function createUser() {
         try {
+            if (!userName || !password) {
+                setDisplayError('⚠ Please enter both email and password');
+                return;
+            }
+
+            // Validate email format first
+            if (!validateEmailFormat(userName)) {
+                setDisplayError('⚠ Please enter a valid email address format');
+                return;
+            }
+
+            setIsValidating(true);
+
             const response = await fetch('/api/auth/create', {
                 method: 'POST',
                 headers: {
@@ -50,6 +85,8 @@ export function Unauthenticated(props) {
             }
         } catch (error) {
             setDisplayError('⚠ Error connecting to service');
+        } finally {
+            setIsValidating(false);
         }
     }
 
@@ -58,13 +95,11 @@ export function Unauthenticated(props) {
             <div className="container-fluid text-center">
                 <div className="login-box">
                     <h1>Let's Whack-a-Mole!</h1>
-                    <small>Enter a valid email. (Validation via MailboxLayer API goes here)</small>
-
                     <div className="input-group">
                         <span className="input-group-text">✉</span>
                         <input 
                             className="form-control" 
-                            type="text" 
+                            type="email" 
                             value={userName}
                             onChange={(e) => setUserName(e.target.value)} 
                             placeholder="Email" 
@@ -84,17 +119,17 @@ export function Unauthenticated(props) {
                         variant="primary"
                         className="mt-2 me-2" 
                         onClick={() => loginUser()} 
-                        disabled={!userName || !password}
+                        disabled={!userName || !password || isValidating}
                     >
-                        Login
+                        {isValidating ? 'Validating...' : 'Login'}
                     </Button>
                     <Button 
                         variant="secondary"
                         className="mt-2" 
                         onClick={() => createUser()} 
-                        disabled={!userName || !password}
+                        disabled={!userName || !password || isValidating}
                     >
-                        Create
+                        {isValidating ? 'Validating...' : 'Create'}
                     </Button>
                 </div>
             </div>
@@ -103,28 +138,3 @@ export function Unauthenticated(props) {
         </>
     );
 }
-
-/*
-return (
-    <>
-      <div>
-        <div className='input-group mb-3'>
-          <span className='input-group-text'>@</span>
-          <input className='form-control' type='text' value={userName} onChange={(e) => setUserName(e.target.value)} placeholder='your@email.com' />
-        </div>
-        <div className='input-group mb-3'>
-          <span className='input-group-text'>🔒</span>
-          <input className='form-control' type='password' onChange={(e) => setPassword(e.target.value)} placeholder='password' />
-        </div>
-        <Button variant='primary' onClick={() => loginUser()} disabled={!userName || !password}>
-          Login
-        </Button>
-        <Button variant='secondary' onClick={() => createUser()} disabled={!userName || !password}>
-          Create
-        </Button>
-      </div>
-
-      <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
-    </>
-  );
-*/
