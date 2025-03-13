@@ -1,34 +1,45 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import Button from 'react-bootstrap/Button';
-
 import './authenticated.css';
 
 export function Authenticated(props) {
   const navigate = useNavigate();
 
-  function logout() {
-    fetch(`/api/auth/logout`, {
-      method: 'delete',
-    })
-      .catch(() => {
-        // Logout failed. Assuming offline
-      })
-      .finally(() => {
-        localStorage.removeItem('userName');
-        props.onLogout();
+  async function logout() {
+    try {
+      const response = await fetch('/api/auth/logout', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
+
+      if (!response.ok) {
+        console.error('Logout failed:', response.status);
+      }
+    } catch (error) {
+      console.error('Logout error:', error);
+    } finally {
+      localStorage.removeItem('userName');
+      props.onLogout();
+    }
   }
 
-
   return (
-    <div>
-      <div className='playerName'>{props.userName}</div>
-      <Button  onClick={() => navigate('/play')} className="btn btn-outline-light" >
+    <div className="text-center mt-4">
+      <div className='playerName mb-3'>{props.userName}</div>
+      <Button 
+        variant="primary"
+        onClick={() => navigate('/play')} 
+        className="me-2"
+      >
         Play
       </Button>
-      <Button onClick={logout} className="btn  btn-outline-light">
+      <Button 
+        variant="secondary"
+        onClick={logout}
+      >
         Logout
       </Button>
     </div>

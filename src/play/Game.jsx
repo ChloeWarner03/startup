@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Game.css";
 import bombImg from "./bomb.png";
-import { Scores } from "../scores/scores";
 
 const GameNotifier = {
   broadcastEvent: (userName, event, data) => {
@@ -94,29 +93,29 @@ export function Game({ userName }) {
     }
   };
 
-  function saveScore(score) {
+  async function saveScore(score) {
     const date = new Date().toLocaleDateString();
     const newScore = { name: userName, score: score, date: date };
 
-    // Get existing scores from localStorage
-    const scoresText = localStorage.getItem('scores');
-    const scores = scoresText ? JSON.parse(scoresText) : [];
-    
-    // Add new score
-    scores.push(newScore);
-    
-    // Sort scores and keep top 10
-    scores.sort((a, b) => b.score - a.score);
-    if (scores.length > 10) {
-      scores.length = 10;
-    }
-    
-    // Save back to localStorage
-    localStorage.setItem('scores', JSON.stringify(scores));
-    loadScores();
+    try {
+      const response = await fetch('/api/score', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newScore),
+      });
 
-    // Let other players know the game has concluded
-    GameNotifier.broadcastEvent(userName, GameEvent.End, newScore);
+      if (!response.ok) {
+        throw new Error('Failed to save score');
+      }
+
+      // Let other players know the game has concluded
+      GameNotifier.broadcastEvent(userName, GameEvent.End, newScore);
+    } catch (error) {
+      console.error('Error saving score:', error);
+      alert('Failed to save score. Please try again.');
+    }
   }
 
   return (
@@ -148,9 +147,6 @@ export function Game({ userName }) {
           </div>
         ))}
       </div>
-
-      {/* Display Scores */}
-      <Scores scores={scores} />
     </div>
   );
 }

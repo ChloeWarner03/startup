@@ -1,43 +1,38 @@
 import React from 'react';
-
 import './scores.css';
 
 export function Scores() {
     const [scores, setScores] = React.useState([]);
 
-    React.useEffect(() => {
-        const scoresText = localStorage.getItem('scores');
-        if (scoresText) {
-            setScores(JSON.parse(scoresText));
+    // Fetch scores from the backend
+    const fetchScores = async () => {
+        try {
+            const response = await fetch('/api/scores', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setScores(data);
+            } else {
+                console.error('Failed to fetch scores');
+            }
+        } catch (error) {
+            console.error('Error fetching scores:', error);
         }
+    };
+
+    React.useEffect(() => {
+        fetchScores();
     }, []);
 
-    const sortedScores = [...scores.sort((a, b) => b.score - a.score)]
+    const sortedScores = [...scores].sort((a, b) => b.score - a.score);
     const highScores = sortedScores.slice(0, 4);
-    const userScores = sortedScores.slice(0, 4);
-
-    const scoreRows = [];
-    if (scores.length) {
-        for (const [i, score] of scores.entries()) {
-            scoreRows.push(
-                <tr key={i}>
-                    <td>{i}</td>
-                    <td>{score.name.split('@')[0]}</td>
-                    <td>{score.score}</td>
-                    <td>{score.date}</td>
-                </tr>
-            );
-        }
-    } else {
-        scoreRows.push(
-            <tr key='0'>
-                <td colSpan='4'>Be the first to score</td>
-            </tr>
-        );
-    }
 
     return (
-        <main className='container-fluid  text-center'>
+        <main className='container-fluid text-center'>
             <div id="picture" className="picture-box">
                 <img
                     width="70px"
@@ -49,7 +44,7 @@ export function Scores() {
             </div>
 
             <h1>🏆HighScores:</h1>
-            <table className="table" >
+            <table className="table">
                 <thead>
                     <tr>
                         <th>Rank #</th>
@@ -60,18 +55,17 @@ export function Scores() {
                 </thead>
                 <tbody>
                     {highScores.length > 0 ? (
-                        highScores.map((scores, index) => (
+                        highScores.map((score, index) => (
                             <tr key={index}>
-                                <td> {index + 1}</td>
-                                <td> {scores.name.split("@")[0]}</td>
-                                <td>{scores.score}</td>
-                                <td>{scores.date}</td>
+                                <td>{index + 1}</td>
+                                <td>{score.name?.split('@')[0]}</td>
+                                <td>{score.score}</td>
+                                <td>{score.date}</td>
                             </tr>
                         ))
                     ) : (
                         <tr><td colSpan="4">Be the first to score!</td></tr>
-                    )
-                    }
+                    )}
                 </tbody>
             </table>
         </main>

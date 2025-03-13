@@ -1,39 +1,58 @@
 import React from 'react';
-
 import Button from 'react-bootstrap/Button';
 import { MessageDialog } from './messageDialog';
 
 export function Unauthenticated(props) {
-  const [userName, setUserName] = React.useState(props.userName);
-  const [password, setPassword] = React.useState('');
-  const [displayError, setDisplayError] = React.useState(null);
+    const [userName, setUserName] = React.useState(props.userName);
+    const [password, setPassword] = React.useState('');
+    const [displayError, setDisplayError] = React.useState(null);
 
-  async function loginUser() {
-    localStorage.setItem('userName', userName);
-    props.onLogin(userName);
-}
-
-async function createUser() {
-    localStorage.setItem('userName', userName);
-    props.onLogin(userName);
-}
-
-  async function loginOrCreate(endpoint) {
-    const response = await fetch(endpoint, {
-      method: 'post',
-      body: JSON.stringify({ email: userName, password: password }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    });
-    if (response?.status === 200) {
-      localStorage.setItem('userName', userName);
-      props.onLogin(userName);
-    } else {
-      const body = await response.json();
-      setDisplayError(`⚠ Error: ${body.msg}`);
+    async function loginUser() {
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: userName, password: password }),
+            });
+            
+            if (response.ok) {
+                const user = await response.json();
+                localStorage.setItem('userName', user.email);
+                props.onLogin(user.email);
+            } else {
+                const body = await response.json();
+                setDisplayError(`⚠ Error: ${body.msg}`);
+            }
+        } catch (error) {
+            setDisplayError('⚠ Error connecting to service');
+        }
     }
-  }
+
+    async function createUser() {
+        try {
+            const response = await fetch('/api/auth/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: userName, password: password }),
+            });
+            
+            if (response.ok) {
+                const user = await response.json();
+                localStorage.setItem('userName', user.email);
+                props.onLogin(user.email);
+            } else {
+                const body = await response.json();
+                setDisplayError(`⚠ Error: ${body.msg}`);
+            }
+        } catch (error) {
+            setDisplayError('⚠ Error connecting to service');
+        }
+    }
+
     return (
         <>
             <div className="container-fluid text-center">
@@ -43,17 +62,38 @@ async function createUser() {
 
                     <div className="input-group">
                         <span className="input-group-text">✉</span>
-                        <input className="form-control" type="text" onChange={(e) => setUserName(e.target.value)} placeholder="Email" />
+                        <input 
+                            className="form-control" 
+                            type="text" 
+                            value={userName}
+                            onChange={(e) => setUserName(e.target.value)} 
+                            placeholder="Email" 
+                        />
                     </div>
 
                     <div className="input-group mt-2">
                         <span className="input-group-text">ꗃ</span>
-                        <input className="form-control" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+                        <input 
+                            className="form-control" 
+                            type="password" 
+                            onChange={(e) => setPassword(e.target.value)} 
+                            placeholder="Password" 
+                        />
                     </div>
-                    <Button onClick={() => loginUser()} disabled={!userName || !password}>
+                    <Button 
+                        variant="primary"
+                        className="mt-2 me-2" 
+                        onClick={() => loginUser()} 
+                        disabled={!userName || !password}
+                    >
                         Login
                     </Button>
-                    <Button onClick={() => createUser()} disabled={!userName || !password}>
+                    <Button 
+                        variant="secondary"
+                        className="mt-2" 
+                        onClick={() => createUser()} 
+                        disabled={!userName || !password}
+                    >
                         Create
                     </Button>
                 </div>
@@ -62,7 +102,6 @@ async function createUser() {
             <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
         </>
     );
-
 }
 
 /*
@@ -88,4 +127,4 @@ return (
       <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
     </>
   );
-}*/
+*/
