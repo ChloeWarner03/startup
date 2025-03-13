@@ -118,11 +118,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - did this as i went throug the instructions
+- [x] **Static middleware for frontend** -  my Frontend is served up using Express static middleware
+- [x] **Calls to third party endpoints** - did this on the about page with the images of nature
+- [x] **Backend service endpoints** - completed the backend for my pages
+- [x] **Frontend calls service endpoints** - throughout the different pages it called the endpoints, all logout and login and registartion all works
 
 ## 🚀 DB/Login deliverable
 
