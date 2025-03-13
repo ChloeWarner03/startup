@@ -74,31 +74,6 @@ export function Scores() {
                     }
                 </tbody>
             </table>
-            <br />
-
-            <h1>Your Scores:</h1>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Score</th>
-                        <th>Date</th>
-                    </tr>
-                    </thead>
-                <tbody>
-                    {userScores.length ? (
-                        userScores.map((score, index) => (
-                            <tr key={index}>
-                                <td>{score.score}</td>
-                                <td>{score.date}</td>
-                            </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td colSpan="2">No scores yet!</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
         </main>
     );
 }
