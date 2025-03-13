@@ -2,34 +2,25 @@ import React from 'react';
 import './about.css';
 
 export function About(props) {
-  const [imageUrl, setImageUrl] = React.useState('data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=');
-  const [quote, setQuote] = React.useState('Loading...');
-  const [quoteAuthor, setQuoteAuthor] = React.useState('unknown');
+  const [imageUrl, setImageUrl] = React.useState('https://via.placeholder.com/150');
 
-  // We only want this to render the first time the component is created and so we provide an empty dependency list.
   React.useEffect(() => {
-    const random = Math.floor(Math.random() * 1000);
-    fetch(`https://purr.woody.cat?page=${random}&limit=1`)
-      .then((response) => response.json())
-      .then((data) => {
-        const containerEl = document.querySelector('#picture');
-
-        const width = containerEl.offsetWidth;
-        const height = containerEl.offsetHeight;
-        const apiUrl = `https://picsum.photos/id/${data[0].id}/${width}/${height}?`;
-        setImageUrl(apiUrl);
+    // Request random nature image from Lorem Picsum
+    fetch('https://picsum.photos/800/600?random')
+      .then((response) => {
+        setImageUrl(response.url); // Use the URL of the image
       })
-      .catch();
-
+      .catch((error) => {
+        console.error('Error fetching image:', error);
+      });
   }, []);
 
   return (
     <main className="container-fluid text-center">
-
-      <div id='picture' className='picture-box'>
-        <img src={imageUrl} alt='stock background' />
-      </div>
       <div id="info" className="quote-box text-light">
+        <div id='picture' className='picture-box'>
+          <img src={imageUrl} alt='nature background' />
+        </div>
         <p>
           Whack-a-Mole is a fast paced game where the goal is to whack as many moles as you can before you make too many
           mistakes and the game ends.
@@ -48,6 +39,8 @@ export function About(props) {
     </main>
   );
 }
+
+
 
 
 

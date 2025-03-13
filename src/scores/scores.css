@@ -1,10 +1,9 @@
 td {
-  max-width: 40vw;
+  max-width: 20%; /* Use % or px for max-width */
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  padding: 5px;
-  position: top;
+  vertical-align: middle; /* Aligns text vertically within cells */
 }
 
 .mole {

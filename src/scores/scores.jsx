@@ -33,16 +33,6 @@ export function Scores() {
 
     return (
         <main className='container-fluid text-center'>
-            <div id="picture" className="picture-box">
-                <img
-                    width="70px"
-                    height="70px"
-                    src="molewithcrown.png"
-                    style={{ borderRadius: '50%' }}
-                    alt="KingMole"
-                />
-            </div>
-
             <h1>🏆HighScores:</h1>
             <table className="table">
                 <thead>
