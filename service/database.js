@@ -35,13 +35,16 @@ async function updateUser(user) {
 }
 
 async function addScore(score) {
-  return scoreCollection.insertOne(score);
+  return scoreCollection.insertOne({
+    ...score,
+    timestamp: new Date()  // Add timestamp for proper sorting
+  });
 }
 
 function getHighScores() {
-  const query = { score: { $gt: 0, $lt: 900 } };
+  const query = { score: { $gt: 0 } };  // Remove arbitrary upper limit
   const options = {
-    sort: { score: -1 },
+    sort: { score: -1, timestamp: -1 },  // Sort by score and then by timestamp
     limit: 10,
   };
   const cursor = scoreCollection.find(query, options);

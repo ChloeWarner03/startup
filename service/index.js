@@ -79,7 +79,13 @@ apiRouter.get('/scores', verifyAuth, async (req, res) => {
 
 // SubmitScore
 apiRouter.post('/score', verifyAuth, async (req, res) => {
-  const scores = updateScores(req.body);
+  const user = await findUser('token', req.cookies[authCookieName]);
+  const scoreData = {
+    ...req.body,
+    name: user.email, 
+    date: new Date().toLocaleDateString()
+  };
+  const scores = await updateScores(scoreData);
   res.send(scores);
 });
 
@@ -121,7 +127,7 @@ async function findUser(field, value) {
   return DB.getUser(value);
 }
 
-// setAuthCookie in the HTTP response
+// setAuthCookie in the HTTP responses
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
     secure: true,
