@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Game.css";
 import bombImg from "./bomb.png";
+import { GameEvent, GameNotifier } from './gameNotifier';
 
-const GameNotifier = {
-  broadcastEvent: (userName, event, data) => {
-    console.log(`${userName} triggered event: ${event}`, data);
-    // Placeholder for broadcasting the event, e.g., WebSocket
-  }
-};
-
-const GameEvent = {
-  Start: 'start',
-  End: 'end'
+// Using GameNotifier directly from import
+GameNotifier.broadcastEvent = (userName, event, data) => {
+  console.log(`${userName} triggered event: ${event}`, data);
 };
 
 export function Game({ userName }) {
