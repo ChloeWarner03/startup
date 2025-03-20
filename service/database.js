@@ -38,8 +38,8 @@ async function addScore(score) {
   return scoreCollection.insertOne(score);
 }
 
-function getHighScores() {
-  const query = { score: { $gt: 0, $lt: 900 } };
+function getHighScores(email) {
+  const query = { email: email, score: { $gt: 0, $lt: 900 } };
   const options = {
     sort: { score: -1 },
     limit: 10,

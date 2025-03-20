@@ -73,13 +73,17 @@ const verifyAuth = async (req, res, next) => {
 
 // GetScores
 apiRouter.get('/scores', verifyAuth, async (req, res) => {
-  const scores = await DB.getHighScores();
+  const user = await findUser('token', req.cookies[authCookieName]);
+  const scores = await DB.getHighScores(user.email);
   res.send(scores);
 });
 
 // SubmitScore
 apiRouter.post('/score', verifyAuth, async (req, res) => {
-  const scores = updateScores(req.body);
+  const user = await findUser('token', req.cookies[authCookieName]);
+  const score = { ...req.body, email: user.email };
+  await DB.addScore(score);
+  const scores = await DB.getHighScores(user.email);
   res.send(scores);
 });
 
