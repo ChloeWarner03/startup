@@ -81,7 +81,11 @@ apiRouter.get('/scores', verifyAuth, async (req, res) => {
 // SubmitScore
 apiRouter.post('/score', verifyAuth, async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
-  const score = { ...req.body, email: user.email };
+  const score = { 
+    ...req.body, 
+    email: user.email,
+    date: new Date().toLocaleDateString()
+  };
   await DB.addScore(score);
   const scores = await DB.getHighScores(user.email);
   res.send(scores);

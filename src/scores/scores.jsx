@@ -22,7 +22,7 @@ export function Scores() {
             scoreRows.push(
                 <tr key={i}>
                     <td>{i}</td>
-                    <td>{score.name.split('@')[0]}</td>
+                    <td>{score.email.split('@')[0]}</td>
                     <td>{score.score}</td>
                     <td>{score.date}</td>
                 </tr>

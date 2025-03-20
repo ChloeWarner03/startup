@@ -72,8 +72,7 @@ const handleStart = () => {
 };
 
 async function saveScore(score) {
-  const date = new Date().toLocaleDateString();
-  const newScore = { name: userName, score: score, date: date };
+  const newScore = { score: score };
 
   await fetch('/api/score', {
     method: 'POST',
