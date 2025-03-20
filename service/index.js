@@ -1,27 +1,15 @@
-const { MongoClient } = require('mongodb');
-const config = require('./dbConfig.json');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
+const DB = require('./database.js');
 
 const authCookieName = 'token';
 
-// MongoDB connection setup
-const url = `mongodb+srv://${config.username}:${config.password}@${config.hostname}`;
-const client = new MongoClient(url);
-const db = client.db(config.database);
-
-// Connect to MongoDB
-(async function () {
-  try {
-    await client.connect();
-    console.log('Connected successfully to MongoDB');
-  } catch (err) {
-    console.error('Error connecting to MongoDB:', err);
-  }
-})();
+// The scores and users are saved in memory and disappear whenever the service is restarted.
+let users = [];
+let scores = [];
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -36,7 +24,7 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 // Router for service endpoints
-var apiRouter = express.Router();
+const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 // CreateAuth a new user
@@ -51,12 +39,13 @@ apiRouter.post('/auth/create', async (req, res) => {
   }
 });
 
-// GetAuth login an existing user
+// GetAuth token for the provided credentials
 apiRouter.post('/auth/login', async (req, res) => {
   const user = await findUser('email', req.body.email);
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
+      await DB.updateUser(user);
       setAuthCookie(res, user.token);
       res.send({ email: user.email });
       return;
@@ -65,11 +54,12 @@ apiRouter.post('/auth/login', async (req, res) => {
   res.status(401).send({ msg: 'Unauthorized' });
 });
 
-// DeleteAuth logout a user
+// DeleteAuth token if stored in cookie
 apiRouter.delete('/auth/logout', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
     delete user.token;
+    DB.updateUser(user);
   }
   res.clearCookie(authCookieName);
   res.status(204).end();
@@ -86,24 +76,15 @@ const verifyAuth = async (req, res, next) => {
 };
 
 // GetScores
-apiRouter.get('/scores', verifyAuth, async (_req, res) => {
-  try {
-    const scores = await db.collection('scores').find().sort({ score: -1 }).limit(10).toArray();
-    res.send(scores);
-  } catch (err) {
-    res.status(500).send({ msg: 'Failed to get scores' });
-  }
+apiRouter.get('/scores', verifyAuth, async (req, res) => {
+  const scores = await DB.getHighScores();
+  res.send(scores);
 });
 
 // SubmitScore
 apiRouter.post('/score', verifyAuth, async (req, res) => {
-  try {
-    await db.collection('scores').insertOne(req.body);
-    const scores = await db.collection('scores').find().sort({ score: -1 }).limit(10).toArray();
-    res.send(scores);
-  } catch (err) {
-    res.status(500).send({ msg: 'Failed to submit score' });
-  }
+  const scores = updateScores(req.body);
+  res.send(scores);
 });
 
 // Default error handler
@@ -116,22 +97,32 @@ app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
+// updateScores considers a new score for inclusion in the high scores.
+async function updateScores(newScore) {
+  await DB.addScore(newScore);
+  return DB.getHighScores();
+}
+
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
+
   const user = {
     email: email,
     password: passwordHash,
     token: uuid.v4(),
   };
-  
-  await db.collection('users').insertOne(user);
+  await DB.addUser(user);
+
   return user;
 }
 
 async function findUser(field, value) {
   if (!value) return null;
-  const query = { [field]: value };
-  return await db.collection('users').findOne(query);
+
+  if (field === 'token') {
+    return DB.getUserByToken(value);
+  }
+  return DB.getUser(value);
 }
 
 // setAuthCookie in the HTTP response
@@ -143,18 +134,6 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-// Cleanup MongoDB connection when server shuts down
-process.on('SIGINT', async () => {
-  try {
-    await client.close();
-    console.log('MongoDB connection closed');
-    process.exit(0);
-  } catch (err) {
-    console.error('Error closing MongoDB connection:', err);
-    process.exit(1);
-  }
-});
-
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
