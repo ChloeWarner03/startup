@@ -1,3 +1,5 @@
+const { MongoClient } = require('mongodb');
+const config = require('./dbConfig.json');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
@@ -6,9 +8,20 @@ const app = express();
 
 const authCookieName = 'token';
 
-// The scores and users are saved in memory and disappear whenever the service is restarted.
-let users = [];
-let scores = [];
+// MongoDB connection setup
+const url = `mongodb+srv://${config.username}:${config.password}@${config.hostname}`;
+const client = new MongoClient(url);
+const db = client.db(config.database);
+
+// Connect to MongoDB
+(async function () {
+  try {
+    await client.connect();
+    console.log('Connected successfully to MongoDB');
+  } catch (err) {
+    console.error('Error connecting to MongoDB:', err);
+  }
+})();
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -73,14 +86,24 @@ const verifyAuth = async (req, res, next) => {
 };
 
 // GetScores
-apiRouter.get('/scores', verifyAuth, (_req, res) => {
-  res.send(scores);
+apiRouter.get('/scores', verifyAuth, async (_req, res) => {
+  try {
+    const scores = await db.collection('scores').find().sort({ score: -1 }).limit(10).toArray();
+    res.send(scores);
+  } catch (err) {
+    res.status(500).send({ msg: 'Failed to get scores' });
+  }
 });
 
 // SubmitScore
-apiRouter.post('/score', verifyAuth, (req, res) => {
-  scores = updateScores(req.body);
-  res.send(scores);
+apiRouter.post('/score', verifyAuth, async (req, res) => {
+  try {
+    await db.collection('scores').insertOne(req.body);
+    const scores = await db.collection('scores').find().sort({ score: -1 }).limit(10).toArray();
+    res.send(scores);
+  } catch (err) {
+    res.status(500).send({ msg: 'Failed to submit score' });
+  }
 });
 
 // Default error handler
@@ -93,45 +116,22 @@ app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-// updateScores considers a new score for inclusion in the high scores.
-function updateScores(newScore) {
-  let found = false;
-  for (const [i, prevScore] of scores.entries()) {
-    if (newScore.score > prevScore.score) {
-      scores.splice(i, 0, newScore);
-      found = true;
-      break;
-    }
-  }
-
-  if (!found) {
-    scores.push(newScore);
-  }
-
-  if (scores.length > 10) {
-    scores.length = 10;
-  }
-
-  return scores;
-}
-
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
-
   const user = {
     email: email,
     password: passwordHash,
     token: uuid.v4(),
   };
-  users.push(user);
-
+  
+  await db.collection('users').insertOne(user);
   return user;
 }
 
 async function findUser(field, value) {
   if (!value) return null;
-
-  return users.find((u) => u[field] === value);
+  const query = { [field]: value };
+  return await db.collection('users').findOne(query);
 }
 
 // setAuthCookie in the HTTP response
@@ -142,6 +142,18 @@ function setAuthCookie(res, authToken) {
     sameSite: 'strict',
   });
 }
+
+// Cleanup MongoDB connection when server shuts down
+process.on('SIGINT', async () => {
+  try {
+    await client.close();
+    console.log('MongoDB connection closed');
+    process.exit(0);
+  } catch (err) {
+    console.error('Error closing MongoDB connection:', err);
+    process.exit(1);
+  }
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
