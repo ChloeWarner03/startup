@@ -68,21 +68,23 @@ const handleStart = () => {
     setMoleSpeed(1000);
     setBombIndex(null);
   }
+
   GameNotifier.broadcastEvent(userName, GameEvent.Start, { gameStatus: 'started' });
 };
 
-async function saveScore(score) {
-  const newScore = { score: score };
+  async function saveScore(score) {
+    const date = new Date().toLocaleDateString();
+    const newScore = { name: userName, score: score, date: date };
 
-  await fetch('/api/score', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(newScore),
-  });
+    await fetch('/api/score', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newScore),
+    });
 
-  // Let other players know the game has concluded
-  GameNotifier.broadcastEvent(userName, GameEvent.End, { finalScore: score });
-  alert(`Game Ended!\nYour final score: ${score}`);
+    // Let other players know the game has concluded
+    GameNotifier.broadcastEvent(userName, GameEvent.End, newScore);
+    alert(`Game Ended!\nYour final score: ${score}`);
 }
 
 

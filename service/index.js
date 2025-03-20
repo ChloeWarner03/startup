@@ -7,7 +7,7 @@ const DB = require('./database.js');
 
 const authCookieName = 'token';
 
-// The service port. In production the front-end code is statically hosted by the service on the same port.
+// The service port may be set on the command line
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 // JSON body parsing using built-in middleware
@@ -16,14 +16,14 @@ app.use(express.json());
 // Use the cookie parser middleware for tracking authentication tokens
 app.use(cookieParser());
 
-// Serve up the front-end static content hosting
+// Serve up the applications static content
 app.use(express.static('public'));
 
 // Router for service endpoints
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-// CreateAuth a new user
+// CreateAuth token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
   if (await findUser('email', req.body.email)) {
     res.status(409).send({ msg: 'Existing user' });
@@ -73,21 +73,13 @@ const verifyAuth = async (req, res, next) => {
 
 // GetScores
 apiRouter.get('/scores', verifyAuth, async (req, res) => {
-  const user = await findUser('token', req.cookies[authCookieName]);
-  const scores = await DB.getHighScores(user.email);
+  const scores = await DB.getHighScores();
   res.send(scores);
 });
 
 // SubmitScore
 apiRouter.post('/score', verifyAuth, async (req, res) => {
-  const user = await findUser('token', req.cookies[authCookieName]);
-  const score = { 
-    ...req.body, 
-    email: user.email,
-    date: new Date().toLocaleDateString()
-  };
-  await DB.addScore(score);
-  const scores = await DB.getHighScores(user.email);
+  const scores = updateScores(req.body);
   res.send(scores);
 });
 
