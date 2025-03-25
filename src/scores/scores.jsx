@@ -47,7 +47,9 @@ export function Scores() {
   // Demonstrates rendering an array with React
   const scoreRows = [];
   if (scores.length) {
-    for (const [i, score] of scores.entries()) {
+    // Only show top 10 scores
+    const topScores = scores.slice(0, 10);
+    for (const [i, score] of topScores.entries()) {
       scoreRows.push(
         <tr key={i}>
           <td>{i + 1}</td>
