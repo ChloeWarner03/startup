@@ -67,20 +67,28 @@ const handleStart = () => {
 };
 
   async function saveScore(score) {
-    const date = new Date().toLocaleDateString();
-    const newScore = { name: userName, score: score, date: date };
+    try {
+      const date = new Date().toLocaleDateString();
+      const newScore = { name: userName, score: score, date: date };
 
-    await fetch('/api/score', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(newScore),
-    });
+      const response = await fetch('/api/score', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(newScore),
+      });
 
-    // Let other players know the game has concluded
-    GameNotifier.broadcastEvent(userName, GameEvent.End, newScore);
-    alert(`Game Ended!\nYour final score: ${score}`);
-}
+      if (!response.ok) {
+        throw new Error(`Failed to save score: ${response.statusText}`);
+      }
 
+      // Let other players know the game has concluded
+      GameNotifier.broadcastEvent(userName, GameEvent.End, newScore);
+      alert(`Game Ended!\nYour final score: ${score}`);
+    } catch (error) {
+      console.error('Error saving score:', error);
+      alert('Failed to save score. Please make sure you are logged in.');
+    }
+  }
 
 const handleMoleClick = (index) => {
   if (!gameOver && index === moleIndex) {
