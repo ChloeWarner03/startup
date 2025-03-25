@@ -61,6 +61,8 @@ delopy:
 ./deployReact.sh -k C:/Users/chloe/Downloads/webserver260.pem -h wackamole.click -s startup
 
 
+##DB notes 
+./deployService.sh -k C:/Users/chloe/Downloads/webserver260.pem -h wackamole.click -s startup
 
 
 
