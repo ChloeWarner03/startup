@@ -1,6 +1,6 @@
 import React from 'react';
-
 import './scores.css';
+import { GameEvent, GameNotifier } from '../play/gameNotifier';
 
 export function Scores() {
   const [scores, setScores] = React.useState([]);
@@ -18,15 +18,30 @@ export function Scores() {
     }
   };
 
-  // Fetch scores initially and set up periodic refresh
+  // Handle game events
   React.useEffect(() => {
-    fetchScores();  // Initial fetch
+    const handleGameEvent = (event) => {
+      if (event.type === GameEvent.End) {
+        // Add the new score to the list
+        setScores(prevScores => {
+          const newScore = event.value;
+          const updatedScores = [...prevScores, newScore];
+          // Sort by score (highest first)
+          return updatedScores.sort((a, b) => b.score - a.score);
+        });
+      }
+    };
 
-    // Refresh scores every 2 seconds
-    const intervalId = setInterval(fetchScores, 2000);
+    // Add event handler
+    GameNotifier.addHandler(handleGameEvent);
 
-    // Cleanup interval on component unmount
-    return () => clearInterval(intervalId);
+    // Initial fetch
+    fetchScores();
+
+    // Cleanup
+    return () => {
+      GameNotifier.removeHandler(handleGameEvent);
+    };
   }, []);
 
   // Demonstrates rendering an array with React

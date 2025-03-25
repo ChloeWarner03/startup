@@ -50,5 +50,7 @@ class GameEventNotifier {
   }
 }
 
+// Create a single instance to share
 const GameNotifier = new GameEventNotifier();
+
 export { GameEvent, GameNotifier };

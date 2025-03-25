@@ -3,11 +3,6 @@ import "./Game.css";
 import bombImg from "./bomb.png";
 import { GameEvent, GameNotifier } from './gameNotifier';
 
-// Using GameNotifier directly from import
-GameNotifier.broadcastEvent = (userName, event, data) => {
-  console.log(`${userName} triggered event: ${event}`, data);
-};
-
 export function Game({ userName }) {
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(0);
