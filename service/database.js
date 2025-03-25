@@ -11,10 +11,12 @@ const scoreCollection = db.collection('score');
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
   try {
+    await client.connect();  // Explicitly connect first
     await db.command({ ping: 1 });
-    console.log(`Connect to database`);
+    console.log(`Connected to MongoDB cluster at ${config.hostname}`);
   } catch (ex) {
-    console.log(`Unable to connect to database with ${url} because ${ex.message}`);
+    console.error(`Unable to connect to database: ${ex.message}`);
+    console.error(`Connection URL (password hidden): ${url.replace(encodeURIComponent(config.password), '******')}`);
     process.exit(1);
   }
 })();
