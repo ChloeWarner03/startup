@@ -1,5 +1,5 @@
 {
-  "name": "service",
+  "name": "startup",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
@@ -20,16 +20,14 @@
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
-    "bootstrap": "^5.3.3",
     "cookie-parser": "^1.4.7",
     "express": "^4.21.2",
-    "mongodb": "^6.15.0",
-    "react": "^19.0.0",
-    "react-bootstrap": "^2.10.9",
-    "react-dom": "^19.0.0",
-    "react-router-dom": "^7.1.5",
-    "uuid": "^11.1.0",
-    "ws": "^8.18.1"
+    "mongodb": "^6.5.0",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.10.1",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.1",
+    "uuid": "^11.1.0"
   },
   "description": "[My Notes](notes.md)",
   "main": "index.js",
