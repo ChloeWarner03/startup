@@ -1,10 +1,9 @@
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
 
-// Construct MongoDB connection URL with proper encoding
 const url = `mongodb+srv://${encodeURIComponent(config.userName)}:${encodeURIComponent(config.password)}@${config.hostname}/?retryWrites=true&w=majority`;
 const client = new MongoClient(url);
-const db = client.db('startup');  // Changed to use 'startup' database
+const db = client.db('startup'); 
 const userCollection = db.collection('user');
 const scoreCollection = db.collection('score');
 
