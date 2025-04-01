@@ -21,13 +21,29 @@ export function Scores() {
   // Handle game events
   React.useEffect(() => {
     const handleGameEvent = (event) => {
-      if (event.type === GameEvent.End) {
-        // Add the new score to the list
+      if (event.type === GameEvent.Score || event.type === GameEvent.End) {
         setScores(prevScores => {
+          // Check if score already exists
           const newScore = event.value;
-          const updatedScores = [...prevScores, newScore];
-          // Sort by score (highest first)
-          return updatedScores.sort((a, b) => b.score - a.score);
+          const existingIndex = prevScores.findIndex(s => 
+            s.name === newScore.name && 
+            s.score === newScore.score && 
+            s.date === newScore.date
+          );
+
+          let updatedScores;
+          if (existingIndex >= 0) {
+            // Score already exists, don't add it again
+            updatedScores = [...prevScores];
+          } else {
+            // Add new score
+            updatedScores = [...prevScores, newScore];
+          }
+
+          // Sort by score (highest first) and take top 10
+          return updatedScores
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 10);
         });
       }
     };

@@ -76,6 +76,9 @@ const handleStart = () => {
         throw new Error(`Failed to save score: ${response.statusText}`);
       }
 
+      // Broadcast the score update through WebSocket
+      GameNotifier.broadcastEvent(userName, GameEvent.Score, newScore);
+      
       // Let other players know the game has concluded
       GameNotifier.broadcastEvent(userName, GameEvent.End, newScore);
       alert(`Game Ended!\nYour final score: ${score}`);

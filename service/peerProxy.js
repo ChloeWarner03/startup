@@ -1,41 +1,56 @@
 const { WebSocketServer } = require('ws');
 const uuid = require('uuid');
 
-function peerProxy(server) {
-  // Create a websocket object
-  const wss = new WebSocketServer({ server });
+function peerProxy(httpServer) {
+  const wss = new WebSocketServer({ noServer: true });
 
-  socketServer.on('connection', (ws) => {
+  httpServer.on('upgrade', (request, socket, head) => {
+    wss.handleUpgrade(request, socket, head, function done(ws) {
+      wss.emit('connection', ws, request);
+    });
+  });
+
+  let connections = [];
+
+  wss.on('connection', (ws) => {
     const connection = { id: uuid.v4(), alive: true, ws: ws };
     connections.push(connection);
 
-    // Forward messages to everyone except the sender
-    socket.on('message', function message(data) {
-      connections.forEach((c) => {
-        if (c.id !== connection.id) {
-          c.ws.send(data);
-        }
-      });
+    ws.on('message', function message(data) {
+      try {
+        const event = JSON.parse(data);
+        connections.forEach((c) => {
+          if (c.id !== connection.id && c.ws.readyState === ws.OPEN) {
+            c.ws.send(JSON.stringify(event));
+          }
+        });
+      } catch (error) {
+        console.error('WebSocket message error:', error);
+      }
     });
 
-    // Respond to pong messages by marking the connection alive
-    socket.on('pong', () => {
+    ws.on('close', () => {
+      const pos = connections.findIndex((o) => o.id === connection.id);
+      if (pos >= 0) {
+        connections.splice(pos, 1);
+      }
+    });
+
+    ws.on('pong', () => {
       connection.alive = true;
     });
   });
 
-  // Keep active connections alive
   setInterval(() => {
     connections.forEach((c) => {
-      // Kill any connection that didn't respond to the ping last time
       if (!c.alive) {
         c.ws.terminate();
-      } else {
-        c.alive = false;
-        c.ws.ping();
+        return;
       }
+      c.alive = false;
+      c.ws.ping();
     });
-  }, 10000);
+  }, 30000);
 }
 
 module.exports = { peerProxy };
