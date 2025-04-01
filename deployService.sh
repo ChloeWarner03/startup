@@ -18,10 +18,10 @@ printf "\n----> Deploying React bundle $service to $hostname with $key\n"
 # Step 1
 printf "\n----> Build the distribution package\n"
 rm -rf build
-mkdir build
+mkdir -p build/public
 npm install # make sure vite is installed so that we can bundle
 npm run build # build the React front end
-cp -rf dist/* build # move the React front end to the target distribution
+cp -rf dist/* build/public # move the React front end to the target distribution
 cp service/*.js build # move the back end service to the target distribution
 cp service/*.json build
 
