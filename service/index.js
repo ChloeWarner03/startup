@@ -2,6 +2,7 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
+const path = require('path');
 const app = express();
 const DB = require('./database.js');
 const { peerProxy } = require('./peerProxy.js');
@@ -18,8 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Serve up the applications static content
-app.use(express.static('public'));
-app.use(express.static('.'));
+app.use(express.static('dist'));
 
 // Router for service endpoints
 const apiRouter = express.Router();
@@ -98,7 +98,7 @@ app.use(function (err, req, res, next) {
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
 // updateScores considers a new score for inclusion in the high scores.
