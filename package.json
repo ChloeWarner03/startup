@@ -1,6 +1,8 @@
 {
   "name": "startup",
   "version": "1.0.0",
+  "description": "Startup application",
+  "main": "index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -15,10 +17,8 @@
     "url": "https://github.com/webprogramming260/simon-css/issues"
   },
   "homepage": "https://github.com/webprogramming260/simon-css#readme",
-  "devDependencies": {
-    "vite": "^6.1.0"
-  },
   "dependencies": {
+    "bootstrap": "^5.3.2",
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
     "express": "^4.21.2",
@@ -29,8 +29,12 @@
     "react-router-dom": "^6.22.1",
     "uuid": "^11.1.0"
   },
-  "description": "[My Notes](notes.md)",
-  "main": "index.js",
+  "devDependencies": {
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.1.0"
+  },
   "keywords": [],
   "author": ""
 }
