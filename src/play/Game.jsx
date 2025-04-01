@@ -58,6 +58,7 @@ const handleStart = () => {
     setBombIndex(null);
   }
 
+  GameNotifier.receiveEvent(new EventMessage(userName, GameEvent.Start, { gameStatus: 'started' }));
   GameNotifier.broadcastEvent(userName, GameEvent.Start, { gameStatus: 'started' });
 };
 
@@ -76,7 +77,9 @@ const handleStart = () => {
         throw new Error(`Failed to save score: ${response.statusText}`);
       }
 
-      // Only send one event when the game ends
+      // See your own game end event
+      GameNotifier.receiveEvent(new EventMessage(userName, GameEvent.End, newScore));
+      // Broadcast to others
       GameNotifier.broadcastEvent(userName, GameEvent.End, newScore);
       alert(`Game Ended!\nYour final score: ${score}`);
     } catch (error) {
