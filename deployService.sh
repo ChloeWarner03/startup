@@ -17,8 +17,12 @@ printf "\n----> Deploying React bundle $service to $hostname with $key\n"
 
 # Step 1
 printf "\n----> Build the distribution package\n"
+rm -rf build
+mkdir -p build/public
 npm install # make sure vite is installed so that we can bundle
 npm run build # build the React front end
+cp -rf dist/* build/public # move the React front end to the target distribution
+cp -rf service/* build # move the back end service to the target distribution
 
 # Step 2
 printf "\n----> Clearing out previous distribution on the target\n"
@@ -29,17 +33,53 @@ ENDSSH
 
 # Step 3
 printf "\n----> Copy the distribution package to the target\n"
-scp -r -i "$key" service/*.js service/*.json ubuntu@$hostname:services/$service
-scp -r -i "$key" dist/* ubuntu@$hostname:services/$service/dist
+scp -r -i "$key" build/* ubuntu@$hostname:services/$service
 
 # Step 4
 printf "\n----> Deploy the service on the target\n"
 ssh -i "$key" ubuntu@$hostname << ENDSSH
 cd services/${service}
 npm install
-pm2 restart ${service}
+pm2 delete ${service} 2>/dev/null || true
+NODE_ENV=production pm2 start index.js --name ${service} -- 4000
+pm2 save
+
+# Update main Caddyfile directly
+sudo tee /etc/caddy/Caddyfile << 'CADDYFILE'
+wackamole.click {
+   root * /usr/share/caddy
+   file_server
+   header Cache-Control no-store
+   header -etag
+   header -server
+}
+
+startup.wackamole.click {
+   reverse_proxy * localhost:4000
+   header Cache-Control no-store
+   header -server
+   header -etag
+   header Access-Control-Allow-Origin *
+}
+
+simon.wackamole.click {
+   reverse_proxy * localhost:3000
+   header Cache-Control no-store
+   header -server
+   header -etag
+   header Access-Control-Allow-Origin *
+}
+CADDYFILE
+
+sudo systemctl reload caddy
+
+echo "----> Checking service status:"
+pm2 status
+echo "----> Checking service logs:"
+pm2 logs --lines 20 ${service}
 ENDSSH
 
 # Step 5
 printf "\n----> Removing local copy of the distribution package\n"
+rm -rf build
 rm -rf dist

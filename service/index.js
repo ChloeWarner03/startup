@@ -10,7 +10,7 @@ const { peerProxy } = require('./peerProxy.js');
 const authCookieName = 'token';
 
 // The service port may be set on the command line
-const port = process.argv.length > 2 ? process.argv[2] : 4000;
+const port = 4000;
 
 // JSON body parsing using built-in middleware
 app.use(express.json());
@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Serve up the applications static content
-app.use(express.static('dist'));
+app.use(express.static(path.join(__dirname, '..', 'dist')));
 
 // Router for service endpoints
 const apiRouter = express.Router();
@@ -98,7 +98,7 @@ app.use(function (err, req, res, next) {
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
-  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
 });
 
 // updateScores considers a new score for inclusion in the high scores.
