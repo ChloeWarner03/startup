@@ -21,7 +21,7 @@ export function Scores() {
   // Handle game events
   React.useEffect(() => {
     const handleGameEvent = (event) => {
-      if (event.type === GameEvent.Score || event.type === GameEvent.End) {
+      if (event.type === GameEvent.End) {
         setScores(prevScores => {
           // Check if score already exists
           const newScore = event.value;
@@ -40,10 +40,8 @@ export function Scores() {
             updatedScores = [...prevScores, newScore];
           }
 
-          // Sort by score (highest first) and take top 10
-          return updatedScores
-            .sort((a, b) => b.score - a.score)
-            .slice(0, 10);
+          // Sort by score (highest first)
+          return updatedScores.sort((a, b) => b.score - a.score);
         });
       }
     };
