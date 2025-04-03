@@ -138,8 +138,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - It listens for the websocket for the updat of the live socres
+- [x] **Frontend makes WebSocket connection** - It makes the connection for websocket in game
+- [x] **Data sent over WebSocket connection** -  it is sent on game part fpr the socres of the palyers
+- [x] **WebSocket data displayed** - on the game page 
+- [x] **Application is fully functional** - ALL WORKS!
