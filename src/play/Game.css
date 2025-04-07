@@ -156,7 +156,12 @@ main {
 
 
 .bomb {
-  width: 120%;
-  height: 120;
+  width: 80%;
+  height: 80%;
   object-fit: contain;
+  transition: transform 0.1s ease-in-out;
+}
+
+.hole:hover .bomb {
+  transform: scale(1.05);
 }
